@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.router = void 0;
+const express_1 = require("express");
+const itineraries_controller_1 = require("../controllers/itineraries.controller");
+const user_middleware_1 = require("../../user/middlewares/user.middleware");
+const router = (0, express_1.Router)();
+exports.router = router;
+const itineraryController = new itineraries_controller_1.ItineraryController();
+router.post("/v2", user_middleware_1.isAuthenticated, (req, res) => itineraryController.saveItinerary(req, res));
+router.get("/v2/:tripId", user_middleware_1.isAuthenticated, (req, res) => itineraryController.getAnItinerary(req, res));
+router.get("/v2", user_middleware_1.isAuthenticated, (req, res) => itineraryController.getUsersItinerary(req, res));

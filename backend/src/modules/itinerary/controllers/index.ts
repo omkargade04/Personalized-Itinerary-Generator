@@ -1,0 +1,1 @@
+export { ItineraryController } from "./itineraries.controller";

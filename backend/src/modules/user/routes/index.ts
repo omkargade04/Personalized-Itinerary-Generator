@@ -1,0 +1,1 @@
+export { router as userRoutes } from "./routes";
