@@ -3,12 +3,22 @@ import http from "http";
 import cors from "cors";
 import { UserModule } from "../src/modules/user/app";
 import { ItineraryModule } from "./modules/itinerary/app";
+import axios from "axios";
+const cron = require('node-cron');
 require('dotenv').config()
 
 const app: Express = express();
 const server = http.createServer(app);
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+    origin: [
+      "http://localhost:3000",
+    ],
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+    optionsSuccessStatus: 204,
+  };
+  app.use(cors(corsOptions));
 app.set('PORT', process.env.PORT || 3000);
 app.set("BASE_URL", process.env.BASE_URL || "localhost");
 
@@ -49,3 +59,42 @@ const startServer = async () => {
 };
 
 startServer();
+
+// Added cron
+
+app.get("/ping", (req, res) => {
+    res.status(200).json("pong....");
+  });
+  
+  const API_ENDPOINT = "https://personalized-itinerary-generator.onrender.com";
+  
+  const makeApiRequest = async () => {
+    try {
+      const response = await axios.get(API_ENDPOINT);
+      return response.data;
+    } catch (err: any) {
+      console.error("API request failed:", err.message);
+      throw err;
+    }
+  };
+  
+  const runApiRequestJob = async () => {
+    console.log("Running API request job...");
+    try {
+      const responseData = await makeApiRequest();
+      return responseData;
+    } catch (error) {
+      return null;
+    }
+  };
+  
+  // Schedule the API request job to run every 15 minutes
+  cron.schedule("*/2 * * * *", async () => {
+    const responseData = await runApiRequestJob();
+    if (responseData) {
+      // Process the response data here
+      console.log("API request successful:", responseData);
+    } else {
+      console.log("API request failed");
+    }
+  });

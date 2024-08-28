@@ -17,11 +17,21 @@ const http_1 = __importDefault(require("http"));
 const cors_1 = __importDefault(require("cors"));
 const app_1 = require("../dist/modules/user/app");
 const app_2 = require("../dist/modules/itinerary/app");
+const axios_1 = __importDefault(require("axios"));
+const cron = require('node-cron');
 require('dotenv').config();
 const app = (0, express_1.default)();
 const server = http_1.default.createServer(app);
 app.use(express_1.default.json());
-app.use((0, cors_1.default)());
+const corsOptions = {
+    origin: [
+        "http://localhost:3000",
+    ],
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+    optionsSuccessStatus: 204,
+};
+app.use((0, cors_1.default)(corsOptions));
 app.set('PORT', process.env.PORT || 3000);
 app.set("BASE_URL", process.env.BASE_URL || "localhost");
 const dbConfig = require("../dist/database/config/db");
@@ -58,3 +68,39 @@ const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 startServer();
+// Added cron
+app.get("/ping", (req, res) => {
+    res.status(200).json("pong....");
+});
+const API_ENDPOINT = "https://personalized-itinerary-generator.onrender.com";
+const makeApiRequest = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const response = yield axios_1.default.get(API_ENDPOINT);
+        return response.data;
+    }
+    catch (err) {
+        console.error("API request failed:", err.message);
+        throw err;
+    }
+});
+const runApiRequestJob = () => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("Running API request job...");
+    try {
+        const responseData = yield makeApiRequest();
+        return responseData;
+    }
+    catch (error) {
+        return null;
+    }
+});
+// Schedule the API request job to run every 15 minutes
+cron.schedule("*/2 * * * *", () => __awaiter(void 0, void 0, void 0, function* () {
+    const responseData = yield runApiRequestJob();
+    if (responseData) {
+        // Process the response data here
+        console.log("API request successful:", responseData);
+    }
+    else {
+        console.log("API request failed");
+    }
+}));
