@@ -15,8 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const http_1 = __importDefault(require("http"));
 const cors_1 = __importDefault(require("cors"));
-const app_1 = require("../src/modules/user/app");
-const app_2 = require("./modules/itinerary/app");
+const app_1 = require("../dist/modules/user/app");
+const app_2 = require("../dist/modules/itinerary/app");
 require('dotenv').config();
 const app = (0, express_1.default)();
 const server = http_1.default.createServer(app);
@@ -24,7 +24,7 @@ app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 app.set('PORT', process.env.PORT || 3000);
 app.set("BASE_URL", process.env.BASE_URL || "localhost");
-const dbConfig = require("../src/database/config/db");
+const dbConfig = require("../dist/database/config/db");
 app.use('/api', app_1.UserModule, app_2.ItineraryModule);
 app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
