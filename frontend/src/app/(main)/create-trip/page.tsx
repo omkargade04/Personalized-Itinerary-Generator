@@ -88,10 +88,6 @@ const CreateTrip = () => {
     // console.log(formData);
   }, [formData]);
 
-  if (!authToken) {
-    router.push("/login");
-  }
-
   return (
     <div className="p-4 md:p-0 md:max-w-[60%] w-full mx-auto mt-10">
       <h2 className="font-semibold text-3xl">

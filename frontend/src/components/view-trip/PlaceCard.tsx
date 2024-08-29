@@ -52,7 +52,14 @@ const PlaceCard = ({ place }: { place: Place }) => {
           </h2>
           <p className="text-sm text-gray-400">{place?.placeDetails}</p>
           <p className="">⌛{place?.timeToTravel}</p>
-          <Button onClick={()=>router.push(`https://google.com/maps/search/?api=1&query= + ${place?.placeName}`) }>
+          <Button
+            onClick={() =>
+              window.open(
+                `https://google.com/maps/search/?api=1&query= + ${place?.placeName}`,
+                "_blank"
+              )
+            }
+          >
             <FaMapMarkedAlt className="h-7 w-7 p-1" />
           </Button>
         </div>

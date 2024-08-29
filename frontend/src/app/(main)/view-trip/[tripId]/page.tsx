@@ -39,9 +39,6 @@ const ViewTrip = () => {
     getItineraryData();
   }, [id.tripId]);
 
-  if (!authToken) {
-    router.push("/login");
-  }
 
   return (
     <div className="p-6 md:px-20 lg:px-44 ">

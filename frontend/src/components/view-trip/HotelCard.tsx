@@ -7,6 +7,7 @@ import { FaMapMarkedAlt } from "react-icons/fa";
 import Link from "next/link";
 import { PHOTO_REF_URL, PlaceDetails } from "@/src/service/GlobalAPI";
 import { useRouter } from "next/navigation";
+
 const HotelCard = ({ hotel }: { hotel: Hotel }) => {
   const [photo, setPhoto] = useState("");
   const router = useRouter();
@@ -51,8 +52,11 @@ const HotelCard = ({ hotel }: { hotel: Hotel }) => {
         <div className="pt-28 pr-2 md:pt-24 md:pr-2">
           <Button
             onClick={() =>
-              router.push(
-                `https://google.com/maps/search/?api=1&query= + ${hotel?.hotelName}`
+              window.open(
+                `https://google.com/maps/search/?api=1&query=${encodeURIComponent(
+                  hotel?.hotelName
+                )}`,
+                "_blank"
               )
             }
           >
