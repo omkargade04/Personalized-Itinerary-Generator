@@ -37,10 +37,10 @@ export class KeyService {
       const redisValue = JSON.stringify(newKey);
 
       const timeUntilMidnight = getTimeUntilMidnight();
-      await redis.set(redisKey, redisValue, "EX", timeUntilMidnight);
+      await redis.setex(redisKey, timeUntilMidnight, redisValue);
 
       const rateLimitKey = `user:${user_id}:rate_limit`;
-      await redis.set(rateLimitKey, 10, "EX", timeUntilMidnight);
+      await redis.setex(rateLimitKey, timeUntilMidnight, '10');
 
       return { data: newKey, message: "Key successfully generated" };
     } catch (error: any) {
@@ -81,10 +81,10 @@ export class KeyService {
         const redisValue = JSON.stringify(newKey);
 
         const timeUntilMidnight = getTimeUntilMidnight();
-        await redis.set(redisKey, redisValue, "EX", timeUntilMidnight);
+        await redis.setex(redisKey, timeUntilMidnight, redisValue);
 
         const rateLimitKey = `user:${user_id}:rate_limit`;
-        await redis.set(rateLimitKey, 20, "EX", timeUntilMidnight);
+        await redis.setex(rateLimitKey, timeUntilMidnight, '10');
 
         return { data: newKey, message: "API Key generated successfully!" };
       }
@@ -92,9 +92,9 @@ export class KeyService {
       // Key is expired
       if (!resetKeyLimit) {
         const timeUntilMidnight = getTimeUntilMidnight();
-        await redis.set(rateKey, keyData, "EX", timeUntilMidnight);
-        await redis.set(rateLimitKey, 20, "EX", timeUntilMidnight);
-        remainingRequests = 20;
+        await redis.setex(rateKey, timeUntilMidnight, keyData);
+        await redis.setex(rateLimitKey, timeUntilMidnight, '10');
+        remainingRequests = 10;
       } else {
         remainingRequests = await redis.decr(rateLimitKey);
       }

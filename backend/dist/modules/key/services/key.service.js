@@ -45,9 +45,9 @@ class KeyService {
                 const redisKey = `user:${user_id}:${user_id}`;
                 const redisValue = JSON.stringify(newKey);
                 const timeUntilMidnight = getTimeUntilMidnight();
-                yield redis_1.default.set(redisKey, redisValue, "EX", timeUntilMidnight);
+                yield redis_1.default.setex(redisKey, timeUntilMidnight, redisValue);
                 const rateLimitKey = `user:${user_id}:rate_limit`;
-                yield redis_1.default.set(rateLimitKey, 10, "EX", timeUntilMidnight);
+                yield redis_1.default.setex(rateLimitKey, timeUntilMidnight, '10');
                 return { data: newKey, message: "Key successfully generated" };
             }
             catch (error) {
@@ -83,17 +83,17 @@ class KeyService {
                     const redisKey = `user:${user_id}:${user_id}`;
                     const redisValue = JSON.stringify(newKey);
                     const timeUntilMidnight = getTimeUntilMidnight();
-                    yield redis_1.default.set(redisKey, redisValue, "EX", timeUntilMidnight);
+                    yield redis_1.default.setex(redisKey, timeUntilMidnight, redisValue);
                     const rateLimitKey = `user:${user_id}:rate_limit`;
-                    yield redis_1.default.set(rateLimitKey, 20, "EX", timeUntilMidnight);
+                    yield redis_1.default.setex(rateLimitKey, timeUntilMidnight, '10');
                     return { data: newKey, message: "API Key generated successfully!" };
                 }
                 // Key is expired
                 if (!resetKeyLimit) {
                     const timeUntilMidnight = getTimeUntilMidnight();
-                    yield redis_1.default.set(rateKey, keyData, "EX", timeUntilMidnight);
-                    yield redis_1.default.set(rateLimitKey, 20, "EX", timeUntilMidnight);
-                    remainingRequests = 20;
+                    yield redis_1.default.setex(rateKey, timeUntilMidnight, keyData);
+                    yield redis_1.default.setex(rateLimitKey, timeUntilMidnight, '10');
+                    remainingRequests = 10;
                 }
                 else {
                     remainingRequests = yield redis_1.default.decr(rateLimitKey);

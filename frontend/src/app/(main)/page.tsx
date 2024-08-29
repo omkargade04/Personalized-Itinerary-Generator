@@ -21,7 +21,7 @@ const Page = () => {
 
   const fetchKeyData = async () => {
     try {
-      const cachedKey = await api.get(`${baseURL}/api/key/v2/`, {
+      const cachedKey = await api.get(`${baseURL}/api/key/v2`, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
