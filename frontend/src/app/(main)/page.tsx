@@ -21,11 +21,8 @@ const Page = () => {
 
   const fetchKeyData = async () => {
     try {
-      const cachedKey = await api.get(`${baseURL}/api/key/v2`, {
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      });
+      const cachedKey = await api.get(`${baseURL}/api/key/v2`);
+      console.log(cachedKey)
       if (cachedKey.status) {
         setKeyGenerated(true);
         return;
@@ -44,12 +41,12 @@ const Page = () => {
     }
   };
 
-  useEffect(() => {
-    if (!hasFetched.current) {
-      hasFetched.current = true;
-      fetchKeyData();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!hasFetched.current) {
+  //     hasFetched.current = true;
+  //     fetchKeyData();
+  //   }
+  // }, []);
 
   return (
     <div className="flex flex-col min-h-[100dvh]">

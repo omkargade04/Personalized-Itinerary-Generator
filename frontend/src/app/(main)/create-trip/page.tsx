@@ -63,25 +63,6 @@ const CreateTrip = () => {
     setLoading(true);
     try {
       //rate limiting feature -
-      const rateLimitCheck = await api.get(`${baseURL}/api/key/v2/`, {
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      });
-
-      const status = rateLimitCheck.data.status;
-
-      if (status == 429) {
-        setOk(true);
-      }
-
-      if (ok) {
-        toast.error("API limit exceeded. Please try again after 12pm!");
-        setOk(false);
-        router.push("/my-trips");
-        return;
-      }
-
       // toast.dismiss(loadingToast);
       const jsonData = JSON.parse(data);
       const response = await api.post(`${baseURL}/api/itinerary/v2`, jsonData, {
