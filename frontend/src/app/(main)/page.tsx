@@ -26,7 +26,6 @@ const Page = () => {
           Authorization: `Bearer ${authToken}`,
         },
       });
-      console.log(cachedKey);
       if (cachedKey.status) {
         setKeyGenerated(true);
         return;

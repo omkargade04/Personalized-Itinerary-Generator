@@ -123,6 +123,8 @@ To install and run this project locally, add the following commands in your term
 
 `REDIS_URL`=`redis://default:*************@casual-pig-60980.upstash.io:6379` <br>
 
+`REDIS_TOKEN`=`upstash-redis-token` <br>
+
 10. Start the frontend and backend servers:
 
     **backend**: `npm run dev`<br>

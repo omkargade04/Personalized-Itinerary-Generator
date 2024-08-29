@@ -57,7 +57,6 @@ const Login = () => {
         email: email,
         password: password,
       });
-      console.log(response.data);
       toast.dismiss(loadingToast);
       setUserAuthInfo(response.data);
       toast.success("User logged in successfully");

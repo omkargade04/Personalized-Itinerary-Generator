@@ -47,7 +47,6 @@ export default function Component() {
     const email = user.email;
     const password = user.password;
 
-    console.log(user);
 
     if (!email || !password) {
       toast.error("All fields required");
@@ -63,7 +62,6 @@ export default function Component() {
       setUserAuthInfo(result.data);
       toast.dismiss(loadingToast);
       toast.success("User signed up successful");
-      console.log("User signed up successful:", result);
       router.push("/");
     } catch (error: any) {
       toast.dismiss(loadingToast);
