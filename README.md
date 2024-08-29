@@ -8,9 +8,7 @@ This is a web application that generates personalized travel itineraries based o
 2. [Features](#features)
 3. [Technologies and Libraries Used](#technologies-and-libraries-used)
 4. [Project Structure](#project-structure)
-5. [Setup and Installation](#setup-and-installation)
-6. [Usage](#usage)
-7. [Methodology](#methodology)
+5. [Installation](#installation)
 8. [Models Used](#models-used)
 
 
