@@ -36,7 +36,7 @@ const ViewTrip = () => {
     getItineraryData();
   }, [id.tripId]);
 
-  if(!token) {
+  if(!authToken) {
     router.push("/login");
   }
 

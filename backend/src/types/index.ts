@@ -17,6 +17,17 @@ export interface ItineraryData {
     itinerary: (any | string)[];
 };
 
+export interface Key {
+    _id?: string;
+    user_id: string;
+    name?: string;
+    key: string;
+    isActive: boolean;
+    createdAt?: Date;
+    updatedAt?: Date;
+  }
+  
+
 export interface SignupData {
     name: string;
     email: string;

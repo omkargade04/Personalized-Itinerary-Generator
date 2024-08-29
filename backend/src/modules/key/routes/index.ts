@@ -1,0 +1,1 @@
+export {router as keyRouter} from "./routes";

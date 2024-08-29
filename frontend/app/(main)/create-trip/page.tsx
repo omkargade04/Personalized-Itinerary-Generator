@@ -26,7 +26,7 @@ const CreateTrip = () => {
 
   const { authState: token } = useAuth();
 
-  const autToken = token.token;
+  const authToken = token.token;
 
   const router = useRouter();
 
@@ -65,7 +65,7 @@ const CreateTrip = () => {
       const jsonData = JSON.parse(data);
       const response = await api.post(`${baseURL}/api/itinerary/v2`, jsonData, {
         headers: {
-          Authorization: `Bearer ${autToken}`,
+          Authorization: `Bearer ${authToken}`,
         },
       });
       if (!response.data) {
@@ -86,7 +86,7 @@ const CreateTrip = () => {
     // console.log(formData);
   }, [formData]);
 
-  if(!token) {
+  if(!authToken) {
     router.push("/login");
   }
 

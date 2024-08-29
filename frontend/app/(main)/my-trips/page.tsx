@@ -34,7 +34,7 @@ const Page = () => {
   }, [authToken]);
 
 
-  if(!token) {
+  if(!authToken) {
     router.push("/login");
   }
 

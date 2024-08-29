@@ -1,8 +1,9 @@
 import express, { Express, Request, Response } from "express";
 import http from "http";
 import cors from "cors";
-import { UserModule } from "../src/modules/user/app";
+import { UserModule } from "./modules/user/app";
 import { ItineraryModule } from "./modules/itinerary/app";
+import { KeyModule } from "./modules/key/app";
 import axios from "axios";
 const cron = require('node-cron');
 require('dotenv').config()
@@ -23,9 +24,10 @@ const corsOptions = {
 app.set('PORT', process.env.PORT || 3000);
 app.set("BASE_URL", process.env.BASE_URL || "localhost");
 
-const dbConfig = require("../src/database/config/db");
+const dbConfig = require("./database/config/db");
+const redis = require("./database/config/redis");
 
-app.use('/api', UserModule, ItineraryModule);
+app.use('/api', UserModule, ItineraryModule, KeyModule);
 
 
 app.get('/', async (req: Request, res: Response) => {
