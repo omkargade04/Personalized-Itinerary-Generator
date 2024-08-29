@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+    nextjs:
+        container_name: nextjs
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        ports:
+            - "3000:3000"
+        volumes:
+            - .:/app
+            - node_modules:/app/node_modules
+        env_file:
+            - .env
+        environment:
+            NEXT_PUBLIC_BASE_URL: http://localhost:8000
+        command: "npm run dev"
+
+
+volumes:
+    node_modules:
