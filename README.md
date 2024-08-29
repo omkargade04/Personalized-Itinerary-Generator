@@ -61,25 +61,25 @@ To install and run this project locally, add the following commands in your term
 1. Clone the repository from GitHub:
 
 ```bash
-    `git clone https://github.com/omkargade04/Personalized-Itinerary-Generator.git`
+    git clone https://github.com/omkargade04/Personalized-Itinerary-Generator.git
 ```
 
 2. Navigate into the project directory:
 
 ```bash
-   `cd Personalized-Itinerary-Generator`
+   cd Personalized-Itinerary-Generator
 ```
 
 3. Navigate into client:
 
 ```bash
-   `cd frontend`
+   cd frontend
 ```
 
 4. Navigate into server:
 
 ```bash
-   `cd backend`
+   cd backend
 ```
 
 ## Important
@@ -88,19 +88,19 @@ To install and run this project locally, add the following commands in your term
    Run the below command in **frontend** directory and **backend** directory.
 
 ```bash
-   `npm install -g npm@latest`
+   npm install -g npm@latest
 ```
 
 6. Install `dependencies` for the frontend in **frontend** directory (assuming you have `Node.js` and `npm` installed):
 
 ```bash
-   `npm install`
+   npm install
 ```
 
 7. Install `dependencies` for the backend in **backend** directory (assuming you have `Node.js` and `npm` installed):
 
 ```bash
-   `npm install`
+   npm install
 ```
 
 8. Create a .env file in the **frontend** directory and add backend **api endpoint**:
