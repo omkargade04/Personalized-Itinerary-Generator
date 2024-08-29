@@ -14,6 +14,7 @@ import { toast } from "sonner";
 import { json } from "stream/consumers";
 
 const CreateTrip = () => {
+  const [ok, setOk] = useState(false);
   const [place, setPlace] = useState();
   const [formData, setFormData] = useState<Record<string, any>>({});
   const [loading, setLoading] = useState(false);
@@ -61,6 +62,26 @@ const CreateTrip = () => {
     // const loadingToast = toast.loading("Generating Itinerary...");
     setLoading(true);
     try {
+      //rate limiting feature -
+      const rateLimitCheck = await api.get(`${baseURL}/api/key/v2/`, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
+
+      const status = rateLimitCheck.data.status;
+
+      if (status == 429) {
+        setOk(true);
+      }
+
+      if (ok) {
+        toast.error("API limit exceeded. Please try again after 12pm!");
+        setOk(false);
+        router.push("/my-trips");
+        return;
+      }
+
       // toast.dismiss(loadingToast);
       const jsonData = JSON.parse(data);
       const response = await api.post(`${baseURL}/api/itinerary/v2`, jsonData, {
@@ -72,8 +93,8 @@ const CreateTrip = () => {
         throw new Error("No data received from the server");
       }
       const id = response.data.data._id;
-      toast.success('Itinerary generated successfully!');
-      router.push(`/view-trip/${id}`)
+      toast.success("Itinerary generated successfully!");
+      router.push(`/view-trip/${id}`);
       // Handle successful response here
     } catch (error: any) {
       // toast.dismiss(loadingToast);
@@ -86,7 +107,7 @@ const CreateTrip = () => {
     // console.log(formData);
   }, [formData]);
 
-  if(!authToken) {
+  if (!authToken) {
     router.push("/login");
   }
 
@@ -167,12 +188,10 @@ const CreateTrip = () => {
             className="text-white "
             onClick={onGenerateTrip}
           >
-            {loading ? (
-              // <AiOutlineLoading3Quarters className="h-7 w-7 animate-spin" />
-              "Generating Trip Itinreary...."
-            ) : (
-              "Generate Trip Itinreary"
-            )}
+            {loading
+              ? // <AiOutlineLoading3Quarters className="h-7 w-7 animate-spin" />
+                "Generating Trip Itinreary...."
+              : "Generate Trip Itinreary"}
           </Button>
         </div>
       </div>

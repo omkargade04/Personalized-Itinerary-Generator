@@ -40,7 +40,7 @@ class KeyController {
                 if (data.status === 429) {
                     return res
                         .status(429)
-                        .json({ message: data.message, success: true });
+                        .json({ message: data.message, success: true, status: data.status });
                 }
                 return res
                     .status(201)

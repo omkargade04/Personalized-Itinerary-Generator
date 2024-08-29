@@ -8,10 +8,50 @@ import TravelImage from "@/public/travel.jpg";
 import TravelImage2 from "@/public/travelling.jpg";
 import { useAuth } from "@/context/Auth";
 import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import api, { baseURL } from "@/api/api";
+import { headers } from "next/headers";
 
 const Page = () => {
+  const { authState: token } = useAuth();
+  const authToken = token.token;
   const router = useRouter();
-  const {authState: user} = useAuth();
+  const hasFetched = useRef(false);
+  const [keyGenerated, setKeyGenerated] = useState(false);
+
+  const fetchKeyData = async () => {
+    try {
+      const cachedKey = await api.get(`${baseURL}/api/key/v2/`, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
+      console.log(cachedKey);
+      if (cachedKey.status) {
+        setKeyGenerated(true);
+        return;
+      }
+
+      const response = await api.post(`${baseURL}/api/key/v2/`, {
+        headers: {
+          Authorization: `Bearer ${authToken}`,
+        },
+      });
+      if (response.status) {
+        setKeyGenerated(true);
+      }
+    } catch (err: any) {
+      console.log("Error: ", err);
+    }
+  };
+
+  useEffect(() => {
+    if (!hasFetched.current) {
+      hasFetched.current = true;
+      fetchKeyData();
+    }
+  }, []);
+
   return (
     <div className="flex flex-col min-h-[100dvh]">
       <main className="flex-1">
@@ -152,13 +192,15 @@ const Page = () => {
               </p>
             </div>
             <div className="mx-auto w-full max-w-sm space-y-2 flex flex-col justify-center items-center">
-              {user ? (
+              {authToken ? (
                 <div className="flex gap-2">
-                  <Button onClick={()=>router.push('/create-trip')}>Get Started</Button>
+                  <Button onClick={() => router.push("/create-trip")}>
+                    Get Started
+                  </Button>
                 </div>
               ) : (
                 <div className="">
-                  <Button onClick={()=>router.push('/login')}>Login</Button>
+                  <Button onClick={() => router.push("/login")}>Login</Button>
                 </div>
               )}
               <p className="text-xs text-muted-foreground">
