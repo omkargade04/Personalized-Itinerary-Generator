@@ -109,11 +109,18 @@ To install and run this project locally, add the following commands in your term
 
 `NEXT_PUBLIC_BASEURL`=`https://personalized-itinerary-generator.onrender.com` (for **deployed** backend)
 
+`NEXT_PUBLIC_GOOGLE_PLACE_API_KEY`=`google-place-api-key`
+
+`NEXT_PUBLIC_GEMINI_API_KEY`=`gemini-api-key`
+
 9. Create a .env file in the **backend** directory and connect your database with prisma via database url:
 
-`PORT`=`5000` <br>
+`PORT`=`8000` <br>
+
 `MONGO_URL`=`mongodb+srv://<username>:<password>@cluster0.dvriq5l.mongodb.net/<db_name>` <br>
+
 `SECRET_TOKEN`=`your-token` <br>
+
 `REDIS_URL`=`redis://default:*************@casual-pig-60980.upstash.io:6379` <br>
 
 10. Start the frontend and backend servers:
