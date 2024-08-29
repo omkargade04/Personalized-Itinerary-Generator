@@ -6,10 +6,11 @@ import { Button } from "../ui/button";
 import { FaMapMarkedAlt } from "react-icons/fa";
 import Link from "next/link";
 import { PHOTO_REF_URL, PlaceDetails } from "@/src/service/GlobalAPI";
+import { useRouter } from "next/navigation";
 
 const PlaceCard = ({ place }: { place: Place }) => {
   const [photo, setPhoto] = useState("");
-
+  const router = useRouter();
   const getPlacePhoto = async () => {
     const data = {
       textQuery: place?.placeName,
@@ -51,7 +52,7 @@ const PlaceCard = ({ place }: { place: Place }) => {
           </h2>
           <p className="text-sm text-gray-400">{place?.placeDetails}</p>
           <p className="">⌛{place?.timeToTravel}</p>
-          <Button>
+          <Button onClick={()=>router.push(`https://google.com/maps/search/?api=1&query= + ${place?.placeName}`) }>
             <FaMapMarkedAlt className="h-7 w-7 p-1" />
           </Button>
         </div>

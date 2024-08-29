@@ -13,7 +13,7 @@ const HotelInfo = ({ itinerary }: { itinerary: Itinerary }) => {
         {itinerary?.hotels?.map((hotel, index) => (
           <div
             key={index}
-            className="hover:scale-105 transition-all cursor-pointer"
+            className="hover:scale-105 transition-all"
           >
             <HotelCard hotel={hotel} />
           </div>
