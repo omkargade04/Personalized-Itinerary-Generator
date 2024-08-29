@@ -51,77 +51,79 @@ This application provides a web interface for creating your prefered itinerary f
 ## Project Structure
 
 
-├───backend
-│   ├───.github
-│   │   └───workflow
-│   ├───dist
-│   │   ├───database
-│   │   │   ├───config
-│   │   │   └───interface
-│   │   ├───modules
-│   │   │   ├───itinerary
-│   │   │   │   ├───controllers
-│   │   │   │   ├───routes
-│   │   │   │   └───services
-│   │   │   ├───key
-│   │   │   │   ├───controllers
-│   │   │   │   ├───routes
-│   │   │   │   └───services
-│   │   │   └───user
-│   │   │       ├───controllers
-│   │   │       ├───middlewares
-│   │   │       ├───routes
-│   │   │       └───services
-│   │   └───types
-│   ├───node_modules
-│   └───src
-│       ├───database
-│       │   ├───config
-│       │   └───interface
-│       ├───modules
-│       │   ├───itinerary
-│       │   │   ├───controllers
-│       │   │   ├───routes
-│       │   │   └───services
-│       │   ├───key
-│       │   │   ├───controllers
-│       │   │   ├───routes
-│       │   │   └───services
-│       │   └───user
-│       │       ├───controllers
-│       │       ├───middlewares
-│       │       ├───routes
-│       │       └───services
-│       └───types
-└───frontend
-|   ├───.github
-|   │   └───workflow
-|   ├───.next
-|   ├───api
-|   ├───app
-|   │   ├───(auth)
-|   │   │   ├───login
-|   │   │   └───signup
-|   │   └───(main)
-|   │       ├───create-trip
-|   │       ├───my-trips
-|   │       └───view-trip
-|   │           └───[tripId]
-|   ├───components
-|   │   ├───layout
-|   │   ├───my-trips
-|   │   ├───ui
-|   │   └───view-trip
-|   ├───constants
-|   ├───context
-|   │   └───user
-|   ├───lib
-|   ├───node_modules
-|   ├───public
-|   ├───service
-|   └───types
-|
-|____README.md           
+backend/
+├───.github
+│   └───workflow
+├───dist
+│   ├───database
+│   │   ├───config
+│   │   └───interface
+│   ├───modules
+│   │   ├───itinerary
+│   │   │   ├───controllers
+│   │   │   ├───routes
+│   │   │   └───services
+│   │   ├───key
+│   │   │   ├───controllers
+│   │   │   ├───routes
+│   │   │   └───services
+│   │   └───user
+│   │       ├───controllers
+│   │       ├───middlewares
+│   │       ├───routes
+│   │       └───services
+│   └───types
+├───node_modules
+└───src
+    ├───database
+    │   ├───config
+    │   └───interface
+    ├───modules
+    │   ├───itinerary
+    │   │   ├───controllers
+    │   │   ├───routes
+    │   │   └───services
+    │   ├───key
+    │   │   ├───controllers
+    │   │   ├───routes
+    │   │   └───services
+    │   └───user
+    │       ├───controllers
+    │       ├───middlewares
+    │       ├───routes
+    │       └───services
+    └───types
+
+frontend/
+├───.github
+│   └───workflow
+├───.next
+├───api
+├───app
+│   ├───(auth)
+│   │   ├───login
+│   │   └───signup
+│   └───(main)
+│       ├───create-trip
+│       ├───my-trips
+│       └───view-trip
+│           └───[tripId]
+├───components
+│   ├───layout
+│   ├───my-trips
+│   ├───ui
+│   └───view-trip
+├───constants
+├───context
+│   └───user
+├───lib
+├───node_modules
+├───public
+├───service
+└───types
+
+README.md     
+        
 
 
 ## View website
