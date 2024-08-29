@@ -5,7 +5,9 @@
   "scripts": {
     "build": "npx tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/app.ts"
+    "dev": "nodemon src/app.ts",
+    "start": "node dist/app.js",
+    "lint": "eslint 'src/**/*.{ts,js}'"
   },
   "keywords": [],
   "author": "",

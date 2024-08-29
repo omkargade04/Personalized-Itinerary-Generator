@@ -1,0 +1,45 @@
+name: Backend Tests and Build
+
+on:
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "backend/**"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.x"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Build the project
+        run: npm run build
+
+      - name: Archive production artifacts
+        if: success()
+        uses: actions/upload-artifact@v3
+        with:
+          name: backend-dist
+          path: |
+            dist/**
+            package.json
+            package-lock.json
+            tsconfig.json
