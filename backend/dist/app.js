@@ -15,8 +15,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const http_1 = __importDefault(require("http"));
 const cors_1 = __importDefault(require("cors"));
-const app_1 = require("../dist/modules/user/app");
-const app_2 = require("../dist/modules/itinerary/app");
+const app_1 = require("./modules/user/app");
+const app_2 = require("./modules/itinerary/app");
+const app_3 = require("./modules/key/app");
 const axios_1 = __importDefault(require("axios"));
 const cron = require('node-cron');
 require('dotenv').config();
@@ -35,8 +36,9 @@ const corsOptions = {
 app.use((0, cors_1.default)(corsOptions));
 app.set('PORT', process.env.PORT || 3000);
 app.set("BASE_URL", process.env.BASE_URL || "localhost");
-const dbConfig = require("../dist/database/config/db");
-app.use('/api', app_1.UserModule, app_2.ItineraryModule);
+const dbConfig = require("./database/config/db");
+const redis = require("./database/config/redis");
+app.use('/api', app_1.UserModule, app_2.ItineraryModule, app_3.KeyModule);
 app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         res.status(200).send("Hello");

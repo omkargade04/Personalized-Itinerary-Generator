@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.router = void 0;
+const express_1 = require("express");
+const key_controller_1 = require("../controllers/key.controller");
+const user_middleware_1 = require("../../user/middlewares/user.middleware");
+const router = (0, express_1.Router)();
+exports.router = router;
+const keyController = new key_controller_1.KeyController();
+router.post("/", user_middleware_1.isAuthenticated, (req, res) => keyController.keyGenerate(req, res));
+router.get("/", user_middleware_1.isAuthenticated, (req, res) => keyController.rateLimiting(req, res));

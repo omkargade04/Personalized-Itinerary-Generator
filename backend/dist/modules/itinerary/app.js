@@ -2,9 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ItineraryModule = void 0;
 const express_1 = require("express");
-// import { itineraryRouter } from "./routes/itinerary.routes";
+const itinerary_routes_1 = require("./routes/itinerary.routes");
 const routes_1 = require("./routes/routes");
 const ItineraryModule = (0, express_1.Router)();
 exports.ItineraryModule = ItineraryModule;
-// ItineraryModule.use("/itinerary", itineraryRouter)
-ItineraryModule.use("/itinerary", routes_1.router);
+//Code written using usual methods in v1
+ItineraryModule.use("/itinerary/v1", itinerary_routes_1.itineraryRouter);
+//Code written using OOP in v2
+ItineraryModule.use("/itinerary/v2", routes_1.router);
