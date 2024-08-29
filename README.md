@@ -9,8 +9,7 @@ This is a web application that generates personalized travel itineraries based o
 3. [Technologies and Libraries Used](#technologies-and-libraries-used)
 4. [Project Structure](#project-structure)
 5. [Installation](#installation)
-8. [Models Used](#models-used)
-
+6. [Models Used](#models-used)
 
 ## Project Overview
 
@@ -27,6 +26,7 @@ This application provides a web interface for creating your prefered itinerary f
 ## Technologies and Libraries Used
 
 - **Backend**:
+
   - Typescript: Implemented MVC structure in OOP fashion and ensured type safety of the data using typescript.
   - Node.js: Used to setup the environment for backend.
   - Express.js: Built scalable backend server.
@@ -36,6 +36,7 @@ This application provides a web interface for creating your prefered itinerary f
   - Continuous Integration(CI): Impleneted Continuous Integration pipeline for lint check and healthy build for pull request at main branch.
 
 - **Frontend**:
+
   - Typescript: Ensured type safety of the data using typescript and enhances development efficiency, code quality, and maintainability.
   - Next.js: Built the entire client side and integrating backend apis using Next.js.
   - Tailwind CSS: Used tailwind css for responsive interface for across all devices.
@@ -47,84 +48,80 @@ This application provides a web interface for creating your prefered itinerary f
   - Gemini API for generating user personalized itinerary.
   - Google Maps API for directing to specific destination location.
 
-
 ## Project Structure
-
 
 backend/
 ├───.github
-│   └───workflow
+│ └───workflow
 ├───dist
-│   ├───database
-│   │   ├───config
-│   │   └───interface
-│   ├───modules
-│   │   ├───itinerary
-│   │   │   ├───controllers
-│   │   │   ├───routes
-│   │   │   └───services
-│   │   ├───key
-│   │   │   ├───controllers
-│   │   │   ├───routes
-│   │   │   └───services
-│   │   └───user
-│   │       ├───controllers
-│   │       ├───middlewares
-│   │       ├───routes
-│   │       └───services
-│   └───types
+│ ├───database
+│ │ ├───config
+│ │ └───interface
+│ ├───modules
+│ │ ├───itinerary
+│ │ │ ├───controllers
+│ │ │ ├───routes
+│ │ │ └───services
+│ │ ├───key
+│ │ │ ├───controllers
+│ │ │ ├───routes
+│ │ │ └───services
+│ │ └───user
+│ │ ├───controllers
+│ │ ├───middlewares
+│ │ ├───routes
+│ │ └───services
+│ └───types
 ├───node_modules
 └───src
-    ├───database
-    │   ├───config
-    │   └───interface
-    ├───modules
-    │   ├───itinerary
-    │   │   ├───controllers
-    │   │   ├───routes
-    │   │   └───services
-    │   ├───key
-    │   │   ├───controllers
-    │   │   ├───routes
-    │   │   └───services
-    │   └───user
-    │       ├───controllers
-    │       ├───middlewares
-    │       ├───routes
-    │       └───services
-    └───types
+├───database
+│ ├───config
+│ └───interface
+├───modules
+│ ├───itinerary
+│ │ ├───controllers
+│ │ ├───routes
+│ │ └───services
+│ ├───key
+│ │ ├───controllers
+│ │ ├───routes
+│ │ └───services
+│ └───user
+│ ├───controllers
+│ ├───middlewares
+│ ├───routes
+│ └───services
+└───types
 
 frontend/
 ├───.github
-│   └───workflow
+│ └───workflow
 ├───.next
 ├───api
 ├───app
-│   ├───(auth)
-│   │   ├───login
-│   │   └───signup
-│   └───(main)
-│       ├───create-trip
-│       ├───my-trips
-│       └───view-trip
-│           └───[tripId]
+│ ├───(auth)
+│ │ ├───login
+│ │ └───signup
+│ └───(main)
+│ ├───create-trip
+│ ├───my-trips
+│ └───view-trip
+│ └───[tripId]
 ├───components
-│   ├───layout
-│   ├───my-trips
-│   ├───ui
-│   └───view-trip
+│ ├───layout
+│ ├───my-trips
+│ ├───ui
+│ └───view-trip
 ├───constants
 ├───context
-│   └───user
+│ └───user
 ├───lib
 ├───node_modules
 ├───public
 ├───service
 └───types
 
-README.md     
-        
-
+README.md
 
 ## View website
 
