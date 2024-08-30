@@ -36,6 +36,7 @@ const corsOptions = {
     optionsSuccessStatus: 204,
 };
 app.use((0, cors_1.default)(corsOptions));
+app.options('*', (0, cors_1.default)(corsOptions));
 app.set('PORT', process.env.PORT || 3000);
 app.set("BASE_URL", process.env.BASE_URL || "localhost");
 const dbConfig = require("./database/config/db");

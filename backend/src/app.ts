@@ -23,6 +23,7 @@ const corsOptions = {
     optionsSuccessStatus: 204,
   };
   app.use(cors(corsOptions));
+  app.options('*', cors(corsOptions));
 app.set('PORT', process.env.PORT || 3000);
 app.set("BASE_URL", process.env.BASE_URL || "localhost");
 
