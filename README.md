@@ -7,9 +7,8 @@ This is a web application that generates personalized travel itineraries based o
 1. [Project Overview](#project-overview)
 2. [Features](#features)
 3. [Technologies and Libraries Used](#technologies-and-libraries-used)
-4. [Project Structure](#project-structure)
-5. [Installation](#installation)
-6. [Models Used](#models-used)
+4. [Installation](#installation)
+5. [Models Used](#models-used)
 
 ## Project Overview
 
@@ -45,14 +44,14 @@ This application provides a web interface for creating your prefered itinerary f
   - Continuous Integration(CI): Impleneted Continuous Integration pipeline for lint check and healthy build for pull request at main branch.
 
 - **Models**:
-  - Gemini API for generating user personalized itinerary.
+  - Gemini AI Model for generating user personalized itinerary.
   - Google Maps API for directing to specific destination location.
 
 
 ## View website
 
 Here is the deployed website : [Deployed Link](https://personalized-itinerary-generator.vercel.app/)<br>
-Here is the deployed backend server: [Backend Link](https://personalized-itinerary-generator.onrender.com/);
+Here is the deployed backend server: [Backend Link](https://personalized-itinerary-generator.onrender.com/)
 
 ## Installation
 
@@ -105,9 +104,9 @@ To install and run this project locally, add the following commands in your term
 
 8. Create a .env file in the **frontend** directory and add backend **api endpoint**:
 
-`NEXT_PUBLIC_BASEURL`=`http://localhost:8000` (for **local** backend)
+`NEXT_PUBLIC_BASE_URL`=`http://localhost:8000` (for **local** backend)
 
-`NEXT_PUBLIC_BASEURL`=`https://personalized-itinerary-generator.onrender.com` (for **deployed** backend)
+`NEXT_PUBLIC_BASE_URL`=`https://personalized-itinerary-generator.onrender.com` (for **deployed** backend)
 
 `NEXT_PUBLIC_GOOGLE_PLACE_API_KEY`=`google-place-api-key`
 
@@ -121,7 +120,7 @@ To install and run this project locally, add the following commands in your term
 
 `SECRET_TOKEN`=`your-token` <br>
 
-`REDIS_URL`=`redis://default:*************@casual-pig-60980.upstash.io:6379` <br>
+`REDIS_URL`=`https://casual-pig-60980.upstash.io:6379` <br>
 
 `REDIS_TOKEN`=`upstash-redis-token` <br>
 
