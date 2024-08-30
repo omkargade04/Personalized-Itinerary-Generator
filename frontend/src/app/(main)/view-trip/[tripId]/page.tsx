@@ -20,14 +20,7 @@ const ViewTrip = () => {
 
   const getItineraryData = async () => {
     try {
-      const response = await api.get(
-        `${baseURL}/api/itinerary/v2/${id.tripId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${authToken}`,
-          },
-        }
-      );
+      const response = await api.get(`${baseURL}/api/itinerary/v2/${id.tripId}`);
       const setData = response.data.data;
       setItinerary(setData);
     } catch (err: any) {

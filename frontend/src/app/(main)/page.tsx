@@ -28,11 +28,7 @@ const Page = () => {
         return;
       }
 
-      const response = await api.post(`${baseURL}/api/key/v2/`, {
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      });
+      const response = await api.post(`${baseURL}/api/key/v2/`);
       if (response.status) {
         setKeyGenerated(true);
       }

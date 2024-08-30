@@ -18,11 +18,7 @@ const Page = () => {
 
   const getUsersItinerary = async () => {
     try {
-      const response = await api.get(`${baseURL}/api/itinerary/v2`, {
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      });
+      const response = await api.get(`${baseURL}/api/itinerary/v2`);
       setItinerary(response.data.data);
     } catch (err: any) {
       console.log("Error: ", err);

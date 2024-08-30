@@ -65,11 +65,7 @@ const CreateTrip = () => {
       //rate limiting feature -
       // toast.dismiss(loadingToast);
       const jsonData = JSON.parse(data);
-      const response = await api.post(`${baseURL}/api/itinerary/v2`, jsonData, {
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      });
+      const response = await api.post(`${baseURL}/api/itinerary/v2`, jsonData);
       if (!response.data) {
         throw new Error("No data received from the server");
       }
