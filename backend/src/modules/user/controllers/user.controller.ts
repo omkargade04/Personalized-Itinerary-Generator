@@ -32,22 +32,22 @@ export const login = async(req: any, res: any) => {
         if(!user){
             return res
                 .status(200)
-                .send({message: "User does not exist", success: false});
+                .json({message: "User does not exist", success: false});
         }
         const isMatch = await bcrypt.compare(req.body.password, user.password);
         if(!isMatch){
             return res
                 .status(200)
-                .send({message: "Password is incorrect", success: false});
+                .json({message: "Password is incorrect", success: false});
         }else{
             const token = await generateUserToken(user._id);
-            return res.status(200).send({message: "Login successful", success: true, data: user, token: token});
+            return res.status(200).json({message: "Login successful", success: true, data: user, token: token});
         }
     }catch(error){
         console.log(error);
         res
         .status(500)
-        .send({message: "Error Logging In", success: false, error});
+        .json({message: "Error Logging In", success: false, error});
     }
 };
 

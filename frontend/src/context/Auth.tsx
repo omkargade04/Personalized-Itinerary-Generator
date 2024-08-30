@@ -38,7 +38,6 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const setUserAuthInfo = (data: UserCredential) => {
-    console.log(data);
     const userData: UserCredential = {
       token: data.token || authState.token,
       data: data.data || authState.data,

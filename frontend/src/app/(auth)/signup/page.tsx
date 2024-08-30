@@ -54,14 +54,19 @@ export default function Component() {
       return;
     }
     try {
-      const result = await api.post(`${baseURL}/api/user/signup`, {
+      const result = await axios.post(`${baseURL}/api/user/signup`, {
         name: name,
         email: email,
         password: password,
       });
-      setUserAuthInfo(result.data);
       toast.dismiss(loadingToast);
-      toast.success("User signed up successful");
+      if(!result.data.success) {
+        toast.error(result.data.message);
+        setLoading(false);
+        return;
+      }
+      setUserAuthInfo(result.data);
+      toast.success(result.data.message);
       router.push("/");
     } catch (error: any) {
       toast.dismiss(loadingToast);

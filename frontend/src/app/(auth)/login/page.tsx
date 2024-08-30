@@ -53,13 +53,19 @@ const Login = () => {
     }
 
     try {
-      const response = await api.post(`${baseURL}/api/user/login`, {
+      const response = await axios.post(`${baseURL}/api/user/login`, {
         email: email,
         password: password,
       });
       toast.dismiss(loadingToast);
+      // console.log(response.data)
+      if(!response.data.success) {
+        toast.error(response.data.message);
+        setLoading(false);
+        return;
+      }
       setUserAuthInfo(response.data);
-      toast.success("User logged in successfully");
+      toast.success(response.data.message);
       setLoading(false);
       router.push("/");
     } catch (err: any) {
