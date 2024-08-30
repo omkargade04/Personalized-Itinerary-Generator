@@ -8,17 +8,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __rest = (this && this.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ItineraryService = void 0;
 const itinerary_interface_1 = require("../../../database/interface/itinerary.interface");
@@ -57,8 +46,10 @@ class ItineraryService {
                 if (!trip) {
                     throw new Error("Itinerary not found");
                 }
-                const _a = trip.toObject(), { _id } = _a, rest = __rest(_a, ["_id"]);
-                return Object.assign({ _id: _id.toString() }, rest);
+                // console.log(trip)
+                return trip;
+                // const { _id, ...rest } = trip.toObject();
+                // return { _id: _id.toString(), ...rest } as Itinerary;
             }
             catch (error) {
                 if (error instanceof Error) {
@@ -75,7 +66,11 @@ class ItineraryService {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const itineraries = yield itinerary_interface_1.ItineraryModel.find({ userId });
-                return itineraries.map(doc => (Object.assign(Object.assign({}, doc.toObject()), { _id: doc._id.toString() })));
+                return itineraries;
+                // return itineraries.map(doc => ({
+                //     ...doc.toObject(),
+                //     _id: doc._id.toString()
+                // }));
             }
             catch (error) {
                 if (error instanceof Error) {

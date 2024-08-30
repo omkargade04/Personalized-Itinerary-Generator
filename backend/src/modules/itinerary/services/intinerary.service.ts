@@ -29,14 +29,16 @@ export class ItineraryService {
         }
     }
 
-    async getAnItinerary(tripId: String): Promise<Itinerary> {
+    async getAnItinerary(tripId: String): Promise<any> {
         try {
             const trip = await ItineraryModel.findById(tripId);
             if (!trip) {
                 throw new Error("Itinerary not found");
             }
-            const { _id, ...rest } = trip.toObject();
-            return { _id: _id.toString(), ...rest } as Itinerary;
+            // console.log(trip)
+            return trip;
+            // const { _id, ...rest } = trip.toObject();
+            // return { _id: _id.toString(), ...rest } as Itinerary;
         } catch(error: any) {
             if (error instanceof Error) {
                 console.log("Error in itinerary-service:", error.message)
@@ -49,13 +51,14 @@ export class ItineraryService {
         }
     }
 
-    async getUsersItinerary(userId: String): Promise<Itinerary[]> {
+    async getUsersItinerary(userId: String): Promise<any> {
         try {
             const itineraries = await ItineraryModel.find({userId});
-            return itineraries.map(doc => ({
-                ...doc.toObject(),
-                _id: doc._id.toString()
-            }));
+            return itineraries;
+            // return itineraries.map(doc => ({
+            //     ...doc.toObject(),
+            //     _id: doc._id.toString()
+            // }));
         } catch(error: any) {
             if (error instanceof Error) {
                 console.log("Error in itinerary-service:", error.message)
