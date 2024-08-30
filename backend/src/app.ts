@@ -15,6 +15,7 @@ const corsOptions = {
     origin: [
       "http://localhost:3000",
       "https://personalized-itinerary-generator.vercel.app",
+      "https://personalized-itinerary-generator-one.vercel.app/",
       "https://personalized-itinerary-generator-o9doaifew-omkar-gades-projects.vercel.app/"
     ],
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
