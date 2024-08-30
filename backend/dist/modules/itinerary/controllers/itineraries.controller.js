@@ -41,6 +41,7 @@ class ItineraryController {
             const tripId = req.params.tripId;
             try {
                 const trip = yield this.itineraryService.getAnItinerary(tripId);
+                console.log(trip);
                 if (trip) {
                     return res.status(200).json({ status: true, data: trip, message: "Itinerary received successfully!" });
                 }
