@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 import { Place } from "@/types";
 import Image from "next/image";
@@ -17,15 +18,12 @@ const PlaceCard = ({ place }: { place: Place }) => {
       textQuery: place?.placeName,
     };
 
-    const response = await PlaceDetails(data).then((res) => {
-      // console.log("This is places data: ",res.data.places[0].photos[3].name);
-
-      const photoUrl = PHOTO_REF_URL.replace(
-        "{NAME}",
-        res.data.places[0].photos[3].name
-      );
-      setPhoto(photoUrl);
-    });
+    const response = await PlaceDetails(data);
+    const photoUrl = PHOTO_REF_URL.replace(
+      "{NAME}",
+      response.data.places[0].photos[3].name
+    );
+    setPhoto(photoUrl);
   };
 
   useEffect(() => {

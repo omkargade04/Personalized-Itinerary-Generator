@@ -10,7 +10,7 @@ import { PHOTO_REF_URL, PlaceDetails } from "@/src/service/GlobalAPI";
 import { Itinerary } from "@/types";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { IoIosSend } from "react-icons/io";
 import TravelImage from "../../../../../public/travel.jpg";
 import HotelCard from "@/src/components/view-trip/HotelCard";
@@ -25,25 +25,24 @@ const ViewTrip = () => {
 
   const router = useRouter();
 
-  const getItineraryData = async () => {
+  const getItineraryData = useCallback(async () => {
     try {
       const response = await api.get(
         `${baseURL}/api/itinerary/v2/${id.tripId}`
       );
-      const setData = response.data.data;
-      setItinerary(setData);
+      setItinerary(response.data.data);
     } catch (err: any) {
       console.log("Error: ", err);
     }
-  };
+  }, [id.tripId]);
 
   useEffect(() => {
     getItineraryData();
-  }, [id.tripId]);
+  }, [getItineraryData]);
 
   const [photo, setPhoto] = useState("");
 
-  const getPlacePhoto = async () => {
+  const getPlacePhoto = useCallback(async () => {
     const data = {
       textQuery: itinerary?.location,
     };
@@ -57,11 +56,11 @@ const ViewTrip = () => {
       );
       setPhoto(photoUrl);
     });
-  };
+  }, [itinerary?.location]);
 
   useEffect(() => {
     itinerary && getPlacePhoto();
-  }, [itinerary]);
+  }, [itinerary, getPlacePhoto]);
 
   return (
     <div className="p-6 md:px-20 lg:px-44 ">

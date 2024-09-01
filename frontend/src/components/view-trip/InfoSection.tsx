@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { Itinerary } from "@/types";
@@ -16,15 +17,12 @@ const InfoSection = ({ itinerary }: { itinerary: Itinerary }) => {
       textQuery: itinerary?.location,
     };
 
-    const response = await PlaceDetails(data).then((res) => {
-      // console.log("This is places data: ",res.data.places[0].photos[3].name);
-
-      const photoUrl = PHOTO_REF_URL.replace(
-        "{NAME}",
-        res.data.places[0].photos[3].name
-      );
-      setPhoto(photoUrl);
-    });
+    const response = await PlaceDetails(data);
+    const photoUrl = PHOTO_REF_URL.replace(
+      "{NAME}",
+      response.data.places[0].photos[3].name
+    );
+    setPhoto(photoUrl);
   };
 
   useEffect(() => {

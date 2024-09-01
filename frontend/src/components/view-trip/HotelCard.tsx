@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { Hotel } from "@/types";
@@ -18,15 +19,12 @@ const HotelCard = ({ hotel }: { hotel: Hotel }) => {
       textQuery: hotel?.hotelName,
     };
 
-    const response = await PlaceDetails(data).then((res) => {
-      console.log("This is places data: ", res.data);
-
-      const photoUrl = PHOTO_REF_URL.replace(
-        "{NAME}",
-        res.data.places[0].photos[3].name
-      );
-      setPhoto(photoUrl);
-    });
+    const response = await PlaceDetails(data);
+    const photoUrl = PHOTO_REF_URL.replace(
+      "{NAME}",
+      response.data.places[0].photos[3].name
+    );
+    setPhoto(photoUrl);
   };
 
   useEffect(() => {

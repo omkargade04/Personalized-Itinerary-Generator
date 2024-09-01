@@ -1,3 +1,5 @@
+"use client";
+
 import { Itinerary } from "@/types";
 import React from "react";
 import PlaceCard from "./PlaceCard";
