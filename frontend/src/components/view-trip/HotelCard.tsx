@@ -1,3 +1,5 @@
+"use client";
+
 import { Hotel } from "@/types";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -17,7 +19,7 @@ const HotelCard = ({ hotel }: { hotel: Hotel }) => {
     };
 
     const response = await PlaceDetails(data).then((res) => {
-      // console.log("This is places data: ",res.data.places[0].photos[3].name);
+      console.log("This is places data: ", res.data);
 
       const photoUrl = PHOTO_REF_URL.replace(
         "{NAME}",

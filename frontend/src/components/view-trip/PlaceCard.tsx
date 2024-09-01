@@ -1,3 +1,4 @@
+"use client";
 import { Place } from "@/types";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
