@@ -26,6 +26,8 @@ const server = http_1.default.createServer(app);
 app.use(express_1.default.json());
 const corsOptions = {
     origin: [
+        "*",
+        "https://test-it-3725301883.us-central1.run.app",
         "http://localhost:3000",
         "https://personalized-itinerary-generator.vercel.app",
         "https://personalized-itinerary-generator-one.vercel.app/",
