@@ -68,6 +68,7 @@ const PlaceCard = ({ place }: { place: Place }) => {
               "_blank"
             )
           }
+          className="w-full md:w-0"
         >
           <FaMapMarkedAlt className="h-7 w-7 p-1" />
         </Button>

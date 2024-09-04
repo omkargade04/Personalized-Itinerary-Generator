@@ -55,8 +55,10 @@ const InfoSection = ({ itinerary }: { itinerary: Itinerary }) => {
       )}
       <div className="flex justify-between w-full">
         <div className="my-5 gap-2">
-          <h2 className="font-bold text-2xl pb-2">{itinerary?.location}</h2>
-          <div className="flex gap-x-4">
+          <h2 className="font-bold md:text-2xl pb-2 sm:text-xl text-lg">
+            {itinerary?.location}
+          </h2>
+          <div className="flex-col flex md:flex-row lg:flex-row space-y-2 md:space-y-0 lg:space-y-0 gap-x-4">
             <h2 className="p-1 px-3 bg-gray-100 rounded-full text-xs md:text-md text-gray-500">
               📅{itinerary?.noOfDays} Days
             </h2>
@@ -67,11 +69,6 @@ const InfoSection = ({ itinerary }: { itinerary: Itinerary }) => {
               🧑🏼‍🤝‍🧑🏼 No. of Travelers {itinerary?.traveler}
             </h2>
           </div>
-        </div>
-        <div className="pt-14 pl-2 md:pl-0">
-          <Button>
-            <IoIosSend className="h-7 w-7 p-1" />
-          </Button>
         </div>
       </div>
     </div>

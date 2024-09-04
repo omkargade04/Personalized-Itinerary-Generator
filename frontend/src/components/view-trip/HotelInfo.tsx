@@ -7,7 +7,7 @@ import HotelCard from "./HotelCard";
 const HotelInfo = ({ itinerary }: { itinerary: Itinerary }) => {
   return (
     <div>
-      <h2 className="font-bold text-xl mt-5 pb-2">
+      <h2 className="font-bold md:text-xl  text-lg mt-5 pb-2">
         Hotels recommended for you
       </h2>
 

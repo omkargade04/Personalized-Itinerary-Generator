@@ -7,7 +7,7 @@ import PlaceCard from "./PlaceCard";
 const Places = ({ itinerary }: { itinerary: Itinerary }) => {
   return (
     <div>
-      <h2 className="font-bold text-lg">Places to visit</h2>
+      <h2 className="font-bold text-lg pt-4">Places to visit</h2>
       <div className="">
         {itinerary?.itinerary.map((item, index) => (
           <div key={index} className="space-y-4">
