@@ -50,7 +50,7 @@ This application provides a web interface for creating your prefered itinerary f
 
 ## View website
 
-Here is the deployed website : [Deployed Link](https://personalized-itinerary-generator.vercel.app/)<br>
+Here is the deployed website : [Deployed Link](https://test-it-3725301883.us-central1.run.app/)<br>
 Here is the deployed backend server: [Backend Link](https://personalized-itinerary-generator.onrender.com/)
 
 ## Installation
