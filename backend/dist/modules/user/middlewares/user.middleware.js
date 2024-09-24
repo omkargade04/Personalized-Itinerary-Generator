@@ -14,9 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateUserToken = exports.isAuthenticated = void 0;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const UserModel = require("../../../database/interface/user.interface");
-const UserToken = require("../../../database/interface/user_token.interface");
-// import { ReqMid } from "../../../database/interfaces/user.interface";
+const user_interface_1 = __importDefault(require("../../../database/interface/user.interface"));
+const user_token_interface_1 = __importDefault(require("../../../database/interface/user_token.interface"));
 const isAuthenticated = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const authHeader = req.header("Authorization");
@@ -24,39 +23,41 @@ const isAuthenticated = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
         if (!token) {
             return res.status(401).json({ status: false, message: "Unauthorized user!" });
         }
-        const userToken = yield UserToken.findOne({ token });
+        const userToken = yield user_token_interface_1.default.findOne({ token });
         if (!userToken) {
             return res.status(401).json({ status: false, message: "Unauthorized user!" });
         }
-        const user = yield UserModel.findById(userToken.userId);
+        const user = yield user_interface_1.default.findById(userToken.userId);
         if (!user) {
             return res.status(401).json({ status: false, message: "Unauthorized user!" });
         }
-        //   console.log(token)
         req.user = user;
         req.token = token;
         next();
     }
     catch (err) {
-        console.log(err);
+        console.error("Error in isAuthenticated middleware:", err);
         return res.status(500).json({ status: false, message: "Internal Server Error" });
     }
 });
 exports.isAuthenticated = isAuthenticated;
 const generateUserToken = (user_id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const key = process.env.TOKEN_SECRET || 'default_secret_key';
+        const key = process.env.TOKEN_SECRET;
+        if (!key) {
+            throw new Error("TOKEN_SECRET is not set in environment variables");
+        }
         const token = jsonwebtoken_1.default.sign({ id: user_id }, key, { expiresIn: '24h' });
-        const tokenRecord = new UserToken({
+        const tokenRecord = new user_token_interface_1.default({
             userId: user_id,
-            token: token
+            token
         });
         yield tokenRecord.save();
         return token;
     }
     catch (err) {
-        console.log(err);
-        throw new Error('Could not generate user token');
+        console.error("Error in generateUserToken function:", err);
+        throw new Error("Could not generate user token");
     }
 });
 exports.generateUserToken = generateUserToken;

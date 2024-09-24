@@ -50,4 +50,4 @@ catch (_a) {
     UserModel = mongoose_1.default.model("Users", userSchema);
 }
 // export {UserModel};
-module.exports = UserModel;
+exports.default = UserModel;
