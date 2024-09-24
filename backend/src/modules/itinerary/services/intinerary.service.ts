@@ -1,5 +1,8 @@
 import { ItineraryModel } from "../../../database/interface/itinerary.interface";
+import UserModel from "../../../database/interface/user.interface";
 import { Itinerary, ItineraryData } from "../../../types";
+import { emailService } from "../../../utils/mailingService";
+import generatePdf from "../../../utils/pdfConverter";
 
 export class ItineraryService {
     async saveItinerary(itineraryData: ItineraryData, userId: String): Promise<ItineraryData> {
@@ -14,8 +17,31 @@ export class ItineraryService {
             itinerary: itineraryData.itinerary
         }
         try{
+            const user: any = await UserModel.findById(userId);
+
+            if (!user) {
+                throw new Error('User not found');
+            }
+
             const newItinerary = new ItineraryModel(NewItinerary);
+            
+            // Generate the PDF
+            const itineraryWithStringId = {
+                ...newItinerary,
+                _id: newItinerary._id.toString()
+            };
+            // console.log("Itineraary: ",itineraryWithStringId);
+            const filePath = await generatePdf(itineraryWithStringId, user.name);
+
+            console.log(filePath)
+            
+            await emailService({
+                email: user.email,
+                name: user.name
+            }, filePath, `Travel-Itinerary-${user._id}.pdf`);
+            
             const response = await newItinerary.save();
+
             return response;
         }catch(error: any) {
             if (error instanceof Error) {

@@ -26,6 +26,7 @@ import {
 import { toast } from "sonner";
 import { FiLogOut } from "react-icons/fi";
 import { HiOutlineChatBubbleLeftEllipsis } from "react-icons/hi2";
+import ShimmerButton from "../magicui/shimmer-button";
 
 export const Navbar = () => {
   const { authState: user } = useAuth();
@@ -45,7 +46,7 @@ export const Navbar = () => {
   };
 
   return (
-    <div className="fixed top-0 w-full h-14 px-4 border-b shadow-lg  bg-white flex items-center">
+    <div className="fixed top-0 w-full h-14 px-4 border-b bg-white flex items-center">
       <div className="hidden sm:flex lg:flex md:max-w-screen-2xl mx-auto items-center w-full justify-between">
         <div className="flex space-x-4">
           <CompassIcon
@@ -60,13 +61,33 @@ export const Navbar = () => {
           </p>
         </div>
         <div className="flex md:pr-36 pr-28 space-x-4">
-          <div className=" text-black p-2 border border-black rounded-md">
+          <ShimmerButton
+            className=" p-2"
+            onClick={() => router.push("/create-trip")}
+          >
+            <p className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
+              Create Trip +{" "}
+            </p>
+          </ShimmerButton>
+          {/* <div className=" text-black p-2 border border-black rounded-md">
             <Link href="/create-trip">Create Trip + </Link>
-          </div>
+          </div> */}
+          {/* <div className="z-10 flex min-h-[16rem] items-center justify-center">
+            <ShimmerButton className="shadow-2xl">
+              <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
+                Shimmer Button
+              </span>
+            </ShimmerButton>
+          </div> */}
           {user && (
-            <div className=" text-black p-2 border border-black rounded-md">
-              <Link href="/my-trips">My Trips </Link>
-            </div>
+            <ShimmerButton
+              className="p-2"
+              onClick={() => router.push("/my-trips")}
+            >
+              <p className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
+                My Trips{" "}
+              </p>
+            </ShimmerButton>
           )}
         </div>
         {user.token ? (
@@ -85,7 +106,7 @@ export const Navbar = () => {
             {showProfile && (
               <div
                 className="absolute right-[0.5rem] md:right-[-2rem] p-2 py-1.5 z-10 bg-white mt-20 mr-28 border rounded-lg 
-                w-[10rem] h-[7rem] shadow-md flex flex-col justify-center items-center space-y-2 "
+                w-[10rem] h-[7rem] flex flex-col justify-center items-center space-y-2 "
               >
                 <div
                   className="flex items-center w-full

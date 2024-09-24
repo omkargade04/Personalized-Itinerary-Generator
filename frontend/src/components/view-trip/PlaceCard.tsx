@@ -5,7 +5,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import TravelImage from "@/public/travel.jpg";
 import { Button } from "../ui/button";
-import { FaMapMarkedAlt } from "react-icons/fa";
+import { IoLocationOutline } from "react-icons/io5";;
 import Link from "next/link";
 import { PHOTO_REF_URL, PlaceDetails } from "@/src/service/GlobalAPI";
 import { Skeleton } from "../ui/skeleton"; // Assume you have a Skeleton component for loading
@@ -40,7 +40,7 @@ const PlaceCard = ({ place }: { place: Place }) => {
   }, [place]);
 
   return (
-    <div className="border rounded-xl p-3 mt-2 shadow-md md:flex-row flex flex-col gap-x-4 hover:scale-105 transition-all cursor-pointer">
+    <div className="border rounded-xl  p-3 shadow-md md:flex-row flex flex-col gap-x-4 cursor-pointer">
       {loading ? (
         <Skeleton className="h-[150px] w-[300px] rounded-xl" />
       ) : (
@@ -68,9 +68,9 @@ const PlaceCard = ({ place }: { place: Place }) => {
               "_blank"
             )
           }
-          className="w-full md:w-0"
+          className="relative w-full px-6 bg-black md:w-0"
         >
-          <FaMapMarkedAlt className="h-7 w-7 p-1" />
+          <IoLocationOutline className="absolute  h-9 w-9 p-1" />
         </Button>
       </div>
     </div>
