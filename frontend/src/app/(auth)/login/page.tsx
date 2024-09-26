@@ -78,7 +78,7 @@ const Login = () => {
   return (
     <div className="flex h-screen items-center justify-center bg-slate-200">
       <form onSubmit={handleSubmit}>
-        <Card className="w-full max-w-md border border-input">
+        <Card className="w-full max-w-md bg-white border border-input">
           <CardHeader className="space-y-2 text-center">
             <CardTitle className="text-2xl font-bold">Login</CardTitle>
             <CardDescription>
