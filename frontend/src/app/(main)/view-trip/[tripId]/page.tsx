@@ -63,7 +63,7 @@ const ViewTrip = () => {
   }, [itinerary, getPlacePhoto]);
 
   return (
-    <div className="md:p-6 p-[4rem] px-0  md:px-20 lg:px-44 ">
+    <div className=" p-[4rem] px-0  md:px-20 lg:px-44 ">
       {/* Info section */}
       {itinerary && <InfoSection itinerary={itinerary} />}
 
