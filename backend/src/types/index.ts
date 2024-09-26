@@ -26,7 +26,11 @@ export interface Key {
     createdAt?: Date;
     updatedAt?: Date;
   }
-  
+
+export interface User {
+    email: string;
+    name: string;
+}
 
 export interface SignupData {
     name: string;

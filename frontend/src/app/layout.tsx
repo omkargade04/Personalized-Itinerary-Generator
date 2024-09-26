@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { AuthProvider } from "@/src/context/Auth";
 import "./globals.css";
+import { Navbar } from "../components/layout/Navbar";
 
 const inter = Poppins({
   subsets: ["latin"],
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <main className="">
           <AuthProvider>
+            <Navbar/>
             {children}
             <Toaster
               position="top-right"
@@ -33,6 +35,7 @@ export default function RootLayout({
               pauseWhenPageIsHidden
               visibleToasts={1}
             />
+            
           </AuthProvider>
         </main>
       </body>
