@@ -45,8 +45,12 @@ export const Navbar = () => {
     } catch (err: any) {}
   };
 
+  if (pathName === "/") {
+    return null;
+  }
+
   return (
-    <div className="fixed top-0 w-full h-14 px-4 border-b bg-white flex items-center">
+    <div className="fixed top-0 w-full h-14 px-4 border-b bg-white flex items-center z-20">
       <div className="hidden sm:flex lg:flex md:max-w-screen-2xl mx-auto items-center w-full justify-between">
         <div className="flex space-x-4">
           <CompassIcon

@@ -34,7 +34,7 @@ const Page = () => {
   }
 
   return (
-    <div className="md:p-0 md:max-w-[60%] w-full mx-auto mt-10">
+    <div className=" md:max-w-[60%] w-full mx-auto mt-10 p-[4rem]">
       <h2 className="font-bold text-2xl md:text-3xl lg:text-4xl">My Trips</h2>
       {itinerary.length > 0 ? (
         <div className="grid grid-cols mt-10 md:grid-cols-3 gap-5">

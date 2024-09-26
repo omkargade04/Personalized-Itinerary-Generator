@@ -8,7 +8,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
     <div className="">
       <AuthProvider>
         <Navbar />
-        <div className="min-h-screen p-[5rem]">{children}</div>
+        <div className="min-h-screen">{children}</div>
       </AuthProvider>
     </div>
   );

@@ -85,7 +85,7 @@ const CreateTrip = () => {
   }, [formData]);
 
   return (
-    <div className="p-4 md:p-0 md:max-w-[60%] w-full mx-auto mt-10">
+    <div className="p-4 lg:p-[4rem] md:max-w-[60%] w-full mx-auto mt-10">
       <h2 className="font-semibold text-3xl">
         Tell us your travel preferences
       </h2>
