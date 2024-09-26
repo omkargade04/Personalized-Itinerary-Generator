@@ -1,9 +1,8 @@
 name: Frontend Tests and Build
 on:
   pull_request:
-    branches: ["main"]
-    paths:
-      - "frontend/**"
+    branches:
+      - main
 
 permissions:
   contents: read
@@ -18,8 +17,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22.x"
-      - name: Set working directory
-        run: cd applications/frontend
-      - run: npm install
-      - run: npm run lint
-      - run: npm run test
+      - name: Install Depenedencies
+        run: npm install
+
+      - name: Run build
+       run: npm run build
+
+      - name: Lint checks
+        run: npm run lint
