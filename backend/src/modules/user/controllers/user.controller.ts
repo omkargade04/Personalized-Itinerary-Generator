@@ -2,7 +2,8 @@ import { generateUserToken } from "../middlewares/user.middleware";
 
 const express = require("express");
 const router = express.Router();
-const User = require("../../../database/interface/user.interface");
+// const User = require("../../../database/interface/user.interface");
+import User from "../../../database/interface/user.interface"
 const bcrypt = require("bcrypt");
 // const authMiddleware = require("../middlewares/authMiddleware");
 
@@ -15,8 +16,9 @@ export const signup = async(req: any, res: any) => {
         req.body.password = hashedPassword;
         const newuser = new User(req.body);
         await newuser.save();
-        const user = await User.findOne({email: req.body.email});
-        const token = await generateUserToken(user._id);
+        const user:any = await User.findOne({email: req.body.email});
+        const id = user._id.toString()
+        const token = await generateUserToken(id);
         return res.status(200).send({message: "User created successfully!", success: true, data: user, token: token});
     }catch(error){
         console.log(error);
@@ -40,7 +42,8 @@ export const login = async(req: any, res: any) => {
                 .status(200)
                 .json({message: "Password is incorrect", success: false});
         }else{
-            const token = await generateUserToken(user._id);
+            const id = user._id.toString()
+            const token = await generateUserToken(id);
             return res.status(200).json({message: "Login successful", success: true, data: user, token: token});
         }
     }catch(error){

@@ -39,7 +39,7 @@ export const isAuthenticated = async (
 
 export const generateUserToken = async (user_id: string): Promise<string> => {
   try {
-    const key = process.env.TOKEN_SECRET;
+    const key = process.env.SECRET_TOKEN || "jjn sj";
     if (!key) {
       throw new Error("TOKEN_SECRET is not set in environment variables");
     }

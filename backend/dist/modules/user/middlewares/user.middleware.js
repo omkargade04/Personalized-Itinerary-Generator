@@ -43,7 +43,7 @@ const isAuthenticated = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
 exports.isAuthenticated = isAuthenticated;
 const generateUserToken = (user_id) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const key = process.env.TOKEN_SECRET;
+        const key = process.env.SECRET_TOKEN || "jjn sj";
         if (!key) {
             throw new Error("TOKEN_SECRET is not set in environment variables");
         }

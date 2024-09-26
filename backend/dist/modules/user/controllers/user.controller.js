@@ -8,12 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.login = exports.signup = void 0;
 const user_middleware_1 = require("../middlewares/user.middleware");
 const express = require("express");
 const router = express.Router();
-const User = require("../../../database/interface/user.interface");
+// const User = require("../../../database/interface/user.interface");
+const user_interface_1 = __importDefault(require("../../../database/interface/user.interface"));
 const bcrypt = require("bcrypt");
 // const authMiddleware = require("../middlewares/authMiddleware");
 const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -23,10 +27,11 @@ const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const salt = yield bcrypt.genSalt(10);
         const hashedPassword = yield bcrypt.hash(password, salt);
         req.body.password = hashedPassword;
-        const newuser = new User(req.body);
+        const newuser = new user_interface_1.default(req.body);
         yield newuser.save();
-        const user = yield User.findOne({ email: req.body.email });
-        const token = yield (0, user_middleware_1.generateUserToken)(user._id);
+        const user = yield user_interface_1.default.findOne({ email: req.body.email });
+        const id = user._id.toString();
+        const token = yield (0, user_middleware_1.generateUserToken)(id);
         return res.status(200).send({ message: "User created successfully!", success: true, data: user, token: token });
     }
     catch (error) {
@@ -39,7 +44,7 @@ const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.signup = signup;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const user = yield User.findOne({ email: req.body.email });
+        const user = yield user_interface_1.default.findOne({ email: req.body.email });
         if (!user) {
             return res
                 .status(200)
@@ -52,7 +57,8 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 .json({ message: "Password is incorrect", success: false });
         }
         else {
-            const token = yield (0, user_middleware_1.generateUserToken)(user._id);
+            const id = user._id.toString();
+            const token = yield (0, user_middleware_1.generateUserToken)(id);
             return res.status(200).json({ message: "Login successful", success: true, data: user, token: token });
         }
     }
