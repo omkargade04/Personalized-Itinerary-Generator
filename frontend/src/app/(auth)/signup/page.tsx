@@ -79,9 +79,9 @@ export default function Component() {
     <div className="flex items-center justify-center min-h-[100dvh] px-4 md:px-6 bg-slate-200 ">
       <form
         onSubmit={handleSubmit}
-        className="flex justify-center items-center w-full"
+        className="flex justify-center  items-center w-full"
       >
-        <Card className="w-full max-w-md">
+        <Card className="w-full bg-white max-w-md">
           <CardHeader className="flex flex-col justify-center items-center">
             <CardTitle className="text-2xl">Create an account</CardTitle>
             <CardDescription>

@@ -1,6 +1,8 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import api, { baseURL } from "@/src/api/api";
+import DotPattern from "@/src/components/magicui/dot-pattern";
 import UserTrip from "@/src/components/my-trips/UserTrip";
 import { useAuth } from "@/src/context/Auth";
 import { Itinerary } from "@/types";
@@ -34,7 +36,7 @@ const Page = () => {
   }
 
   return (
-    <div className=" md:max-w-[60%] w-full mx-auto mt-10 p-[4rem]">
+    <div className="relative flex flex-col h-full w-full bg-white items-center justify-center overflow-hidden rounded-lg border bg-background p-20 md:shadow-xl">
       <h2 className="font-bold text-2xl md:text-3xl lg:text-4xl">My Trips</h2>
       {itinerary.length > 0 ? (
         <div className="grid grid-cols mt-10 md:grid-cols-3 gap-5">
@@ -47,6 +49,17 @@ const Page = () => {
       ) : (
         <div className="pt-20">No trips generated yet!</div>
       )}
+
+      <DotPattern
+        width={15}
+        height={15}
+        cx={2}
+        cy={2}
+        cr={1}
+        className={cn(
+          "[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] "
+        )}
+      />
     </div>
   );
 };
