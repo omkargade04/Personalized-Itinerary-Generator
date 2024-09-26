@@ -40,7 +40,7 @@ function LandingPage() {
     <div className=" flex flex-col h-screen fixed">
       <main className="relative z-30">
         <AuroraBackground>
-          <div className="z-20">
+          <div className="z-20 ">
             <motion.div
               initial={{ opacity: 0.0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -51,7 +51,7 @@ function LandingPage() {
               }}
               className="relative flex flex-col gap-4 items-center justify-center px-4"
             >
-              <div className="max-w-md w-full space-y-8 text-center relative z-10 pt-6">
+              <div className="max-w-md w-full space-y-8 text-center relative z-10 pt-6 ">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -83,13 +83,13 @@ function LandingPage() {
                   transition={{ duration: 0.8, delay: 0.2 }}
                 >
                   {authToken ? (
-                    <div className="flex justify-center items-center gap-2 w-full">
+                    <div className="flex justify-center items-center gap-2 w-full pb-4 md:pb-0">
                       <Button onClick={() => router.push("/create-trip")}>
                         Get Started
                       </Button>
                     </div>
                   ) : (
-                    <div className="w-full">
+                    <div className="w-full md:pb-0">
                       <Button onClick={() => router.push("/login")}>
                         Login
                       </Button>
@@ -98,8 +98,8 @@ function LandingPage() {
                 </motion.div>
               </div>
             </motion.div>
-            <section className="flex items-center justify-center">
-              <div className="relative flex h-full w-full max-w-[32rem] items-center justify-center overflow-hidden rounded-lg  px-40 pb-40 md:pb-60">
+            <section className="md:flex items-center h-[100vh] md:h-[15rem] justify-center ">
+              <div className="relative flex h-full w-full max-w-[32rem] items-center justify-center overflow-hidden rounded-lg px-40 pb-80 md:pb-60">
                 <Globe className="bottom-28" />
               </div>
             </section>
