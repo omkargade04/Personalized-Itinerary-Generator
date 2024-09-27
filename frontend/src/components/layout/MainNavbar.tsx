@@ -49,7 +49,7 @@ export const MainNavbar = () => {
             <p className="text-sm font-medium text-gray-900">
               {user.data.name}
             </p>
-            <p className="text-sm text-gray-500">{user.data.email}</p>
+            <p className="text-[13px] text-gray-500">{user.data.email}</p>
             <Button
               variant="destructive"
               className="w-full justify-start"
