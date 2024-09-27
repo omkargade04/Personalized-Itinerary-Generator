@@ -8,25 +8,27 @@ import {
   SheetFooter,
 } from "@/src/components/ui/sheet";
 import { useAuth } from "@/src/context/Auth";
-import { MenuIcon } from "lucide-react";
+import { LogOut, Menu, MenuIcon, PlaneLanding, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { CiUser } from "react-icons/ci";
 import { IoLogoBuffer } from "react-icons/io";
 import { LuLogOut, LuUser2 } from "react-icons/lu";
-import { Popover, PopoverTrigger } from "../ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import {
   FaAngleDown,
   FaAngleUp,
   FaCaretDown,
   FaCaretUp,
   FaSearch,
+  FaSuitcase,
 } from "react-icons/fa";
 import { toast } from "sonner";
 import { FiLogOut } from "react-icons/fi";
 import { HiOutlineChatBubbleLeftEllipsis } from "react-icons/hi2";
 import ShimmerButton from "../magicui/shimmer-button";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 export const Navbar = () => {
   const { authState: user } = useAuth();
@@ -35,6 +37,7 @@ export const Navbar = () => {
   const [showProfile, setShowProfile] = useState(false);
   const [search, setSearch] = useState("");
   const [toggle, setToggle] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogout = () => {
     try {
@@ -52,89 +55,66 @@ export const Navbar = () => {
   return (
     <div className="fixed top-0 w-full h-14 px-4 border-b bg-white flex items-center z-20">
       <div className="hidden sm:flex lg:flex md:max-w-screen-2xl mx-auto items-center w-full justify-between">
-        <div className="flex space-x-4">
-          <CompassIcon
-            className="h-8 w-8 hover:cursor-pointer"
-            onClick={() => router.push("/")}
-          />
-          <p
-            className="text-xl font-bold hover:cursor-pointer pt-1"
-            onClick={() => router.push("/")}
-          >
-            Itinerary Generator
-          </p>
+        <div className="flex-shrink-0 flex items-center">
+          <Link href="/" className="text-xl font-bold text-primary">
+            TravelPlanner
+          </Link>
         </div>
-        <div className="flex md:pr-36 pr-28 space-x-4">
-          <ShimmerButton
-            className=" p-2"
-            onClick={() => router.push("/create-trip")}
+        <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+          <Link
+            href="/create-trip"
+            className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-lg font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
           >
-            <p className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
-              Create Trip +{" "}
-            </p>
-          </ShimmerButton>
-          {/* <div className=" text-black p-2 border border-black rounded-md">
-            <Link href="/create-trip">Create Trip + </Link>
-          </div> */}
-          {/* <div className="z-10 flex min-h-[16rem] items-center justify-center">
-            <ShimmerButton className="shadow-2xl">
-              <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
-                Shimmer Button
-              </span>
-            </ShimmerButton>
-          </div> */}
-          {user && (
-            <ShimmerButton
-              className="p-2"
-              onClick={() => router.push("/my-trips")}
-            >
-              <p className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
-                My Trips{" "}
-              </p>
-            </ShimmerButton>
-          )}
+            <PlaneLanding className="mr-2 h-4 w-4" />
+            Create Trip
+          </Link>
+          <Link
+            href="/my-trips"
+            className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-lg font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700"
+          >
+            <FaSuitcase className="mr-2 h-4 w-4" />
+            My Trips
+          </Link>
         </div>
         {user.token ? (
           <>
-            <div
-              className="flex items-center space-x-2 cursor-pointer bg-black rounded-md p-2"
-              onClick={() => setShowProfile(!showProfile)}
-            >
-              <LuUser2 className="h-6 w-6 text-white" />
-              {!showProfile ? (
-                <FaCaretDown className="h-4 w-4 text-white" />
-              ) : (
-                <FaCaretUp className="h-4 w-4 text-white" />
-              )}
-            </div>
-            {showProfile && (
-              <div
-                className="absolute right-[0.5rem] md:right-[-2rem] p-2 py-1.5 z-10 bg-white mt-20 mr-28 border rounded-lg 
-                w-[10rem] h-[7rem] flex flex-col justify-center items-center space-y-2 "
-              >
-                <div
-                  className="flex items-center w-full
-                hover:bg-zinc-100 rounded-md p-1 hover:cursor-pointer gap-x-4 px-2 text-sm"
-                >
-                  <LuUser2 className={`h-4 w-4 text-primary`} />
-                  <Link href={"/"} className="font-semibold">
-                    {user.data.name}
-                  </Link>
-                </div>
-                <div
-                  className="flex items-center w-full
-                hover:bg-zinc-100 rounded-md p-1 hover:cursor-pointer gap-x-4 px-2 text-sm"
-                >
-                  <FiLogOut className="h-4 w-4 items-start text-red-500 " />
-                  <span
-                    onClick={handleLogout}
-                    className="text-red-500 font-semibold"
+            <div className="hidden sm:ml-6 sm:flex sm:items-center">
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className="flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                   >
-                    Logout
-                  </span>
-                </div>
-              </div>
-            )}
+                    <span className="sr-only">Open user menu</span>
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage
+                        src="https://github.com/shadcn.png"
+                        alt={user.data.name}
+                      />
+                      <AvatarFallback>
+                        {user.data.name}
+                      </AvatarFallback>
+                    </Avatar>
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-56">
+                  <div className="flex flex-col space-y-4">
+                    <p className="text-sm font-medium text-gray-900">
+                      {user.data.name}
+                    </p>
+                    <p className="text-sm text-gray-500">{user.data.email}</p>
+                    <Button
+                      variant="destructive"
+                      className="w-full justify-start"
+                      onClick={handleLogout}
+                    >
+                      <LogOut className="mr-2 h-4 w-4" />
+                      Logout
+                    </Button>
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </div>
           </>
         ) : (
           <div className="space-x-4 md:block md:w-auto flex items-center justify-between w-full">
@@ -147,6 +127,7 @@ export const Navbar = () => {
           </div>
         )}
       </div>
+
       <Sheet>
         <SheetTrigger asChild>
           <Button
@@ -164,36 +145,91 @@ export const Navbar = () => {
         >
           <div className="">
             <div className="flex space-x-1 border-b-2 pb-4 ">
-              <IoLogoBuffer className="h-10 w-10 p-2" />
-              <p className="font-semibold pt-2">Itineary Generator</p>
+              <Link href="/" className="text-xl font-bold text-primary">
+                TravelPlanner
+              </Link>
             </div>
 
-            <nav className="grid gap-2 py-6 space-y-6 text-xl ">
-              <div
-                className={pathName === "/" ? "font-semibold" : "font-medium"}
+            <nav className="grid gap-2 py-6 space-y-4 text-xl ">
+              <Link
+                href="/create-trip"
+                className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800"
               >
-                <Link href="/">Create Trip</Link>
-              </div>
+                Create Trip
+              </Link>
               {user && (
-                <div
-                  className={pathName === "/" ? "font-semibold" : "font-medium"}
+                <Link
+                  href="/my-trips"
+                  className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800"
                 >
-                  <Link href="/my-trips">My Trips</Link>
-                </div>
+                  My Trips
+                </Link>
               )}
             </nav>
           </div>
           <SheetFooter className="w-full">
-            <div className="h-[5rem] w-full rounded-lg border border-slate-400 flex flex-col justify-center items-center">
-              <div className="text-xl font-semibold ">{user.data.name}</div>
-              <div className="flex text-xl text-red-500 space-x-2 hover:cursor-pointer">
-                Logout
-                <LuLogOut className="text-red-500 pt-1 h-6 w-6" />
+            <div className="pt-4 pb-3 border-t border-gray-200">
+              <div className="flex items-center px-4">
+                <div className="flex-shrink-0">
+                  <Avatar className="h-10 w-10">
+                    <AvatarImage
+                      src="https://github.com/shadcn.png"
+                      alt={user.data.name}
+                    />
+                    <AvatarFallback>{user.data.name}</AvatarFallback>
+                  </Avatar>
+                </div>
+                <div className="ml-3">
+                  <div className="text-base font-medium text-gray-800">
+                    {user.data.name}
+                  </div>
+                  <div className="text-sm font-medium text-gray-500">
+                    {user.data.email}
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4  space-y-1">
+                <Button variant="destructive" className="w-full justify-start">
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Logout
+                </Button>
               </div>
             </div>
           </SheetFooter>
         </SheetContent>
       </Sheet>
+      {/* {isMobileMenuOpen && (
+        <div className="pt-[10rem] bg-grey">
+          <div className="pt-2 pb-3 space-y-1">
+            <Link href="/create-trip" className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">
+              Create Trip
+            </Link>
+            <Link href="/my-trips" className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">
+              My Trips
+            </Link>
+          </div>
+          <div className="pt-4 pb-3 border-t border-gray-200">
+            <div className="flex items-center px-4">
+              <div className="flex-shrink-0">
+                <Avatar className="h-10 w-10">
+                  <AvatarImage src="https://github.com/shadcn.png" alt={user.data.name} />
+                  <AvatarFallback>{user.data.name.charAt(0)}</AvatarFallback>
+                </Avatar>
+              </div>
+              <div className="ml-3">
+                <div className="text-base font-medium text-gray-800">{user.data.name}</div>
+                <div className="text-sm font-medium text-gray-500">{user.data.email}</div>
+              </div>
+            </div>
+            <div className="mt-3 space-y-1">
+              <Button variant="destructive" className="w-full justify-start">
+                <LogOut className="mr-2 h-4 w-4" />
+                Logout
+              </Button>
+            </div>
+          </div>
+        </div>
+      )} */}
     </div>
   );
 };

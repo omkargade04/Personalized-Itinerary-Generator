@@ -20,14 +20,14 @@ const generatePdf = (itinerary, username) => __awaiter(void 0, void 0, void 0, f
         if (!html) {
             throw new Error('Error in generating HTML');
         }
-        const browser = yield puppeteer_1.default.launch();
+        // const browser = await puppeteer.launch();
+        const browser = yield puppeteer_1.default.launch({
+            args: ['--disable-setuid-sandbox', '--no-sandbox', '--single-process', '--no-zygote'],
+            executablePath: process.env.PUPPETEER_EXECUTABLE_PATH
+        });
         const page = yield browser.newPage();
         yield page.setContent(html);
-        const pdfBuffer = yield page.pdf({
-            format: 'A4',
-            printBackground: true,
-            margin: { top: '10mm', bottom: '10mm', left: '10mm', right: '10mm' },
-        });
+        const pdfBuffer = yield page.pdf();
         yield browser.close();
         return Buffer.from(pdfBuffer);
     }
