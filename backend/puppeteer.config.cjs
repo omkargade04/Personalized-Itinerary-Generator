@@ -1,3 +1,5 @@
+//puppeteer.config.cjs
+
 const { join } = require('path');
 
 /**
