@@ -21,6 +21,7 @@ This application provides a web interface for creating your prefered itinerary f
 - Leveraged Gemini's API to generate personalized travel itinerary for the user
 - User can view their detailed itinerary.
 - User can view their created trip too.
+- User receives the entire itinerary in PDF form via mail
 
 ## Technologies and Libraries Used
 
@@ -31,6 +32,8 @@ This application provides a web interface for creating your prefered itinerary f
   - Express.js: Built scalable backend server.
   - Mongo DB: Stored the user info and itinerary details using mongo database.
   - Redis: Used redis for rate limiting of creating trips.
+  - Puppeteer: Used to convert the generated Itinerary to PDF format.
+  - Nodemailer: Used to mail the itinerary in PDF form to the user's email.
   - Docker: Leveraged docker to containerize the application.
   - Continuous Integration(CI): Impleneted Continuous Integration pipeline for lint check and healthy build for pull request at main branch.
 
@@ -123,6 +126,14 @@ To install and run this project locally, add the following commands in your term
 `REDIS_URL`=`https://casual-pig-60980.upstash.io:6379` <br>
 
 `REDIS_TOKEN`=`upstash-redis-token` <br>
+
+`NODE_ENV`=`development` <br>
+
+`MAIL_USERNAME`=`your-email@gmail.com` <br>
+
+`MAIL_PASSWORD`=`your-password` <br>
+
+`GOOGLE_PLACE_API_KEY`=`your-google-place-api-key` <br>
 
 10. Start the frontend and backend servers:
 
