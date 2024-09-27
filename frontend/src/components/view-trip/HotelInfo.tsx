@@ -11,12 +11,9 @@ const HotelInfo = ({ itinerary }: { itinerary: Itinerary }) => {
         Hotels recommended for you
       </h2>
 
-      <div className="grid md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 ">
+      <div className="grid md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
         {itinerary?.hotels?.map((hotel, index) => (
-          <div
-            key={index}
-            className="hover:scale-105 transition-all"
-          >
+          <div key={index} className="hover:scale-105 transition-all">
             <HotelCard hotel={hotel} />
           </div>
         ))}

@@ -56,15 +56,16 @@ const HotelCard = ({ hotel }: { hotel: Hotel }) => {
           loading="lazy"
         />
       )}
-      <div className="flex">
-        <div className="my-2 flex flex-col gap-2">
-          <h2 className="font-medium">{hotel?.hotelName}</h2>
-          <h2 className="text-xs text-gray-400">📍{hotel?.hotelAddress}</h2>
-          <h2 className="text-sm">💰{hotel?.price}</h2>
-          <h2 className="text-sm">⭐{hotel?.rating}</h2>
-        </div>
-        <div className="pt-28 pr-2 md:pt-24 md:pr-2">
+      {/* <div className="flex"> */}
+      <div className="my-2 flex flex-col gap-2">
+        <h2 className="font-medium">{hotel?.hotelName}</h2>
+        <h2 className="text-xs text-gray-400">📍{hotel?.hotelAddress}</h2>
+        <h2 className="text-sm">💰{hotel?.price}</h2>
+        <h2 className="text-sm">⭐{hotel?.rating}</h2>
+
+        <div className="pr-2 md:pr-2">
           <Button
+            className="w-full"
             onClick={() =>
               window.open(
                 `https://google.com/maps/search/?api=1&query=${encodeURIComponent(
@@ -74,7 +75,7 @@ const HotelCard = ({ hotel }: { hotel: Hotel }) => {
               )
             }
           >
-            <FaMapMarkedAlt className="h-7 w-7 p-1" />
+            View location
           </Button>
         </div>
       </div>

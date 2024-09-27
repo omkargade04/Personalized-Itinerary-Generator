@@ -5,7 +5,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import TravelImage from "@/public/travel.jpg";
 import { Button } from "../ui/button";
-import { IoLocationOutline } from "react-icons/io5";;
+import { IoLocationOutline } from "react-icons/io5";
 import Link from "next/link";
 import { PHOTO_REF_URL, PlaceDetails } from "@/src/service/GlobalAPI";
 import { Skeleton } from "../ui/skeleton"; // Assume you have a Skeleton component for loading
@@ -68,9 +68,9 @@ const PlaceCard = ({ place }: { place: Place }) => {
               "_blank"
             )
           }
-          className="relative w-full px-6 bg-black md:w-0"
+          className="w-[8rem]"
         >
-          <IoLocationOutline className="absolute  h-9 w-9 p-1" />
+          View location
         </Button>
       </div>
     </div>

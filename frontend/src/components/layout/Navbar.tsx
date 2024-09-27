@@ -169,8 +169,8 @@ export const Navbar = () => {
           </div>
           <SheetFooter className="w-full">
             <div className="pt-4 pb-3 border-t border-gray-200">
-              <div className="flex items-center px-4">
-                <div className="flex-shrink-0">
+              <div className="flex-col md:flex-row items-center px-4">
+                <div className="flex-shrink-0 pl-[2rem]">
                   <Avatar className="h-10 w-10">
                     <AvatarImage
                       src="https://github.com/shadcn.png"
@@ -180,10 +180,10 @@ export const Navbar = () => {
                   </Avatar>
                 </div>
                 <div className="ml-3">
-                  <div className="text-base font-medium text-gray-800">
+                  <div className="md:text-md text-sm font-medium text-gray-800">
                     {user.data.name}
                   </div>
-                  <div className="text-sm font-medium text-gray-500">
+                  <div className="text-[11px] md:text-sm font-medium text-gray-500">
                     {user.data.email}
                   </div>
                 </div>
@@ -198,38 +198,6 @@ export const Navbar = () => {
           </SheetFooter>
         </SheetContent>
       </Sheet>
-      {/* {isMobileMenuOpen && (
-        <div className="pt-[10rem] bg-grey">
-          <div className="pt-2 pb-3 space-y-1">
-            <Link href="/create-trip" className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">
-              Create Trip
-            </Link>
-            <Link href="/my-trips" className="block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800">
-              My Trips
-            </Link>
-          </div>
-          <div className="pt-4 pb-3 border-t border-gray-200">
-            <div className="flex items-center px-4">
-              <div className="flex-shrink-0">
-                <Avatar className="h-10 w-10">
-                  <AvatarImage src="https://github.com/shadcn.png" alt={user.data.name} />
-                  <AvatarFallback>{user.data.name.charAt(0)}</AvatarFallback>
-                </Avatar>
-              </div>
-              <div className="ml-3">
-                <div className="text-base font-medium text-gray-800">{user.data.name}</div>
-                <div className="text-sm font-medium text-gray-500">{user.data.email}</div>
-              </div>
-            </div>
-            <div className="mt-3 space-y-1">
-              <Button variant="destructive" className="w-full justify-start">
-                <LogOut className="mr-2 h-4 w-4" />
-                Logout
-              </Button>
-            </div>
-          </div>
-        </div>
-      )} */}
     </div>
   );
 };

@@ -10,6 +10,7 @@ import Globe from "@/src/components/magicui/globe";
 import { useAuth } from "@/src/context/Auth";
 import api, { baseURL } from "@/src/api/api";
 import { AuroraBackground } from "@/src/components/ui/aurora-background";
+import { MainNavbar } from "@/src/components/layout/MainNavbar";
 
 function LandingPage() {
   const router = useRouter();
@@ -40,6 +41,7 @@ function LandingPage() {
     <div className=" flex flex-col h-screen fixed">
       <main className="relative z-30">
         <AuroraBackground>
+          <MainNavbar />
           <div className="z-20 ">
             <motion.div
               initial={{ opacity: 0.0, y: 40 }}
