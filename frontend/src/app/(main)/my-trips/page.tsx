@@ -38,28 +38,30 @@ const Page = () => {
   return (
     <div className="relative flex flex-col h-full w-full bg-white items-center justify-center overflow-hidden rounded-lg border bg-background p-20 md:shadow-xl">
       <h2 className="font-bold text-2xl md:text-3xl lg:text-4xl">My Trips</h2>
-      {itinerary.length > 0 ? (
-        <div className="grid grid-cols mt-10 md:grid-cols-3 gap-5">
-          {itinerary.map((trip: any, index: any) => (
-            <div className="" key={index}>
-              <UserTrip trip={trip} />
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="pt-20">No trips generated yet!</div>
-      )}
-
-      <DotPattern
-        width={15}
-        height={15}
-        cx={2}
-        cy={2}
-        cr={1}
-        className={cn(
-          "[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] "
+      <div className="max-w-6xl w-full mx-auto">
+        {itinerary.length > 0 ? (
+          <div className="grid grid-cols-1 mt-10 md:grid-cols-2 gap-10">
+            {itinerary.map((trip: any, index: any) => (
+              <div className="" key={index}>
+                <UserTrip trip={trip} />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="pt-20">No trips generated yet!</div>
         )}
-      />
+
+        <DotPattern
+          width={15}
+          height={15}
+          cx={2}
+          cy={2}
+          cr={1}
+          className={cn(
+            "[mask-image:linear-gradient(to_bottom_right,white,transparent,transparent)] "
+          )}
+        />
+      </div>
     </div>
   );
 };

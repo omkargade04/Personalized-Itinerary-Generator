@@ -143,7 +143,7 @@ export default function ItineraryGenerator() {
 
   return (
     <div className="h-screen bg-gray-100 flex items-center justify-center">
-      <div className="relative flex h-full w-full bg-white items-center justify-center overflow-hidden rounded-lg border bg-background p-20 md:shadow-xl">
+      <div className="relative flex h-full w-full bg-white items-center justify-center overflow-hidden rounded-lg  bg-background p-20 md:shadow-xl">
         <ShineBorder
           className="relative flex h-[500px] w-[100vh] flex-col items-center justify-center overflow-hidden rounded-lg border bg-background md:shadow-xl"
           color={["#A07CFE", "#FE8FB5", "#FFBE7B"]}

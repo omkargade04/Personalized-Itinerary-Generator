@@ -61,11 +61,9 @@ const UserTrip = ({ trip }: { trip: Itinerary }) => {
           </h2>
         </div>
         <Button
-          className="w-full"
+          className="w-full bg-slate-500"
           onClick={() => router.push(`/view-trip/${trip._id}`)}
-        >
-          <IoIosSend className="h-7 w-7 p-1" />
-        </Button>
+        >View Itinerary</Button>
       </div>
     </div>
   );
