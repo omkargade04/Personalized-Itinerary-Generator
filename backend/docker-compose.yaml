@@ -10,6 +10,7 @@ services:
     environment:
       MONGO_URL: "mongodb://mongo:27017/Personalised-Travel-Itinerary"
       REDIS_URL: "redis://redis:6379"
+      PUPPETEER_EXECUTABLE_PATH: "/usr/bin/chromium"
     depends_on:
       - mongo
       - redis

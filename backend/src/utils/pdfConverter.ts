@@ -12,7 +12,8 @@ const generatePdf = async (itinerary: Itinerary, username: string): Promise<Buff
 
         const browser = await puppeteer.launch({ 
             args: ['--disable-setuid-sandbox', '--no-sandbox', '--single-process', '--no-zygote'],
-            executablePath: process.env.NODE_ENV === 'PROD' ? process.env.PUPPETEER_EXECUTABLE_PATH : puppeteer.executablePath(),
+            executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || puppeteer.executablePath(),
+            headless: true,
         });
         const page = await browser.newPage();
         await page.setContent(html);

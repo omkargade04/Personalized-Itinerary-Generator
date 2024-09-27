@@ -31,6 +31,9 @@ export class ItineraryService {
                 _id: newItinerary._id.toString()
             };
             // console.log("Itineraary: ",itineraryWithStringId);
+            
+            const response = await newItinerary.save();
+
             const filePath = await generatePdf(itineraryWithStringId, user.name);
 
             // console.log(filePath)
@@ -39,8 +42,6 @@ export class ItineraryService {
                 email: user.email,
                 name: user.name
             }, filePath, `Travel-Itinerary-${user._id}.pdf`);
-            
-            const response = await newItinerary.save();
 
             return response;
         }catch(error: any) {

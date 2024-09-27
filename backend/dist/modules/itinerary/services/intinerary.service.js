@@ -49,13 +49,13 @@ class ItineraryService {
                 // Generate the PDF
                 const itineraryWithStringId = Object.assign(Object.assign({}, newItinerary), { _id: newItinerary._id.toString() });
                 // console.log("Itineraary: ",itineraryWithStringId);
+                const response = yield newItinerary.save();
                 const filePath = yield (0, pdfConverter_1.default)(itineraryWithStringId, user.name);
                 // console.log(filePath)
                 yield (0, mailingService_1.emailService)({
                     email: user.email,
                     name: user.name
                 }, filePath, `Travel-Itinerary-${user._id}.pdf`);
-                const response = yield newItinerary.save();
                 return response;
             }
             catch (error) {

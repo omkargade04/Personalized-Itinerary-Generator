@@ -22,7 +22,8 @@ const generatePdf = (itinerary, username) => __awaiter(void 0, void 0, void 0, f
         }
         const browser = yield puppeteer_1.default.launch({
             args: ['--disable-setuid-sandbox', '--no-sandbox', '--single-process', '--no-zygote'],
-            executablePath: process.env.NODE_ENV === 'PROD' ? process.env.PUPPETEER_EXECUTABLE_PATH : puppeteer_1.default.executablePath(),
+            executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || puppeteer_1.default.executablePath(),
+            headless: true,
         });
         const page = yield browser.newPage();
         yield page.setContent(html);
