@@ -31,14 +31,14 @@ export class ItineraryService {
                 _id: newItinerary._id.toString()
             };
             // console.log("Itineraary: ",itineraryWithStringId);
-            const filePath = await generatePdf(itineraryWithStringId, user.name);
+            // const filePath = await generatePdf(itineraryWithStringId, user.name);
 
-            console.log(filePath)
+            // console.log(filePath)
             
-            await emailService({
-                email: user.email,
-                name: user.name
-            }, filePath, `Travel-Itinerary-${user._id}.pdf`);
+            // await emailService({
+            //     email: user.email,
+            //     name: user.name
+            // }, filePath, `Travel-Itinerary-${user._id}.pdf`);
             
             const response = await newItinerary.save();
 
