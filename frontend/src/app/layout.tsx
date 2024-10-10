@@ -11,7 +11,7 @@ const inter = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Personalised Travel Itinerary Generator",
+  title: "GlobeGuide",
   description: "This is a Personalised Travel Itinerary Generator",
 };
 

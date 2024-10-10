@@ -57,7 +57,7 @@ export const Navbar = () => {
       <div className="hidden sm:flex lg:flex md:max-w-screen-2xl mx-auto items-center w-full justify-between">
         <div className="flex-shrink-0 flex items-center">
           <Link href="/" className="text-xl font-bold text-primary">
-            TravelPlanner
+          GlobeGuide
           </Link>
         </div>
         <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
@@ -146,7 +146,7 @@ export const Navbar = () => {
           <div className="">
             <div className="flex space-x-1 border-b-2 pb-4 ">
               <Link href="/" className="text-xl font-bold text-primary">
-                TravelPlanner
+                GlobeGuide
               </Link>
             </div>
 
